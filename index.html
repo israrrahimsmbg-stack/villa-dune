@@ -1231,7 +1231,7 @@ input,select,textarea,button{font-family:inherit}
     <dl class="residence-facts"><div><dt>Interiors</dt><dd>600 m²</dd></div><div><dt>Bedrooms</dt><dd>1 master + 5 suites</dd></div><div><dt>Beach</dt><dd>Private path</dd></div></dl><div class="residence-gallery" sc-camel-on-drag-over="{{ gal.residence.over }}" sc-camel-on-drop="{{ gal.residence.drop }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px">
       <sc-for list="{{ gal.residence.items }}" as="p" hint-placeholder-count="4">
         <div class="residence-photo" draggable="{{ editing }}" sc-camel-on-drag-start="{{ p.dragStart }}" sc-camel-on-drag-over="{{ p.dragOver }}" sc-camel-on-drop="{{ p.drop }}" sc-camel-on-drag-end="{{ dragEnd }}" sc-camel-on-click="{{ p.open }}" style="position:relative;grid-column:{{ p.span }};height:{{ p.h }};overflow:hidden;background:oklch(0.93 0.015 75);cursor:{{ tileCursor }};opacity:{{ p.op }};box-shadow:{{ p.ring }}">
-          <img src="{{ p.src }}" alt="{{ p.cap }}" loading="lazy" draggable="false" style="width:100%;height:100%;object-fit:cover;pointer-events:none">
+          <img src="{{ p.src }}" srcset="{{ p.srcset }}" sizes="(max-width: 760px) 100vw, 50vw" alt="{{ p.cap }}" loading="lazy" draggable="false" style="width:100%;height:100%;object-fit:cover;pointer-events:none">
           <sc-if value="{{ viewing }}" hint-placeholder-val="{{ true }}"><span class="residence-caption">{{ p.cap }}</span></sc-if>
           <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}">
             <div style="position:absolute;top:10px;left:10px;right:10px;display:flex;justify-content:space-between;gap:8px;align-items:flex-start;flex-wrap:wrap">
@@ -1326,7 +1326,7 @@ input,select,textarea,button{font-family:inherit}
       <div sc-camel-on-drag-over="{{ gal.wellness.over }}" sc-camel-on-drop="{{ gal.wellness.drop }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px">
         <sc-for list="{{ gal.wellness.items }}" as="p" hint-placeholder-count="5">
           <div draggable="{{ editing }}" sc-camel-on-drag-start="{{ p.dragStart }}" sc-camel-on-drag-over="{{ p.dragOver }}" sc-camel-on-drop="{{ p.drop }}" sc-camel-on-drag-end="{{ dragEnd }}" sc-camel-on-click="{{ p.open }}" style="position:relative;grid-column:{{ p.span }};height:{{ p.h }};overflow:hidden;background:oklch(0.93 0.015 75);cursor:{{ tileCursor }};opacity:{{ p.op }};box-shadow:{{ p.ring }}">
-            <img src="{{ p.src }}" alt="{{ p.cap }}" loading="lazy" draggable="false" style="width:100%;height:100%;object-fit:cover;pointer-events:none">
+            <img src="{{ p.src }}" srcset="{{ p.srcset }}" sizes="(max-width: 760px) 100vw, 50vw" alt="{{ p.cap }}" loading="lazy" draggable="false" style="width:100%;height:100%;object-fit:cover;pointer-events:none">
             <sc-if value="{{ viewing }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;left:16px;bottom:14px;color:#fff;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;background:oklch(0.2 0.03 235 / .45);padding:6px 9px">{{ p.cap }}</span></sc-if>
             <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}">
               <div style="position:absolute;top:10px;left:10px;right:10px;display:flex;justify-content:space-between;gap:8px;align-items:flex-start;flex-wrap:wrap">
@@ -1362,7 +1362,7 @@ input,select,textarea,button{font-family:inherit}
     <div class="outdoors-gallery" sc-camel-on-drag-over="{{ gal.outdoors.over }}" sc-camel-on-drop="{{ gal.outdoors.drop }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:12px">
       <sc-for list="{{ gal.outdoors.items }}" as="p" hint-placeholder-count="4">
         <div class="outdoors-photo" draggable="{{ editing }}" sc-camel-on-drag-start="{{ p.dragStart }}" sc-camel-on-drag-over="{{ p.dragOver }}" sc-camel-on-drop="{{ p.drop }}" sc-camel-on-drag-end="{{ dragEnd }}" sc-camel-on-click="{{ p.open }}" style="position:relative;grid-column:{{ p.span }};height:{{ p.h }};overflow:hidden;background:oklch(0.93 0.015 75);cursor:{{ tileCursor }};opacity:{{ p.op }};box-shadow:{{ p.ring }}">
-          <img src="{{ p.src }}" alt="{{ p.cap }}" loading="lazy" draggable="false" style="width:100%;height:100%;object-fit:cover;pointer-events:none">
+          <img src="{{ p.src }}" srcset="{{ p.srcset }}" sizes="(max-width: 760px) 100vw, 50vw" alt="{{ p.cap }}" loading="lazy" draggable="false" style="width:100%;height:100%;object-fit:cover;pointer-events:none">
           <sc-if value="{{ viewing }}" hint-placeholder-val="{{ true }}"><span class="outdoors-caption">{{ p.cap }}</span></sc-if>
           <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}">
             <div style="position:absolute;top:10px;left:10px;right:10px;display:flex;justify-content:space-between;gap:8px;align-items:flex-start;flex-wrap:wrap">
@@ -1397,7 +1397,7 @@ input,select,textarea,button{font-family:inherit}
     <div sc-camel-on-drag-over="{{ gal.dining.over }}" sc-camel-on-drop="{{ gal.dining.drop }}" style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px">
       <sc-for list="{{ gal.dining.items }}" as="p" hint-placeholder-count="4">
         <div draggable="{{ editing }}" sc-camel-on-drag-start="{{ p.dragStart }}" sc-camel-on-drag-over="{{ p.dragOver }}" sc-camel-on-drop="{{ p.drop }}" sc-camel-on-drag-end="{{ dragEnd }}" sc-camel-on-click="{{ p.open }}" style="position:relative;grid-column:{{ p.span }};height:{{ p.h }};overflow:hidden;background:oklch(0.93 0.015 75);cursor:{{ tileCursor }};opacity:{{ p.op }};box-shadow:{{ p.ring }}">
-          <img src="{{ p.src }}" alt="{{ p.cap }}" loading="lazy" draggable="false" style="width:100%;height:100%;object-fit:cover;pointer-events:none">
+          <img src="{{ p.src }}" srcset="{{ p.srcset }}" sizes="(max-width: 760px) 100vw, 50vw" alt="{{ p.cap }}" loading="lazy" draggable="false" style="width:100%;height:100%;object-fit:cover;pointer-events:none">
           <sc-if value="{{ viewing }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;left:16px;bottom:14px;color:#fff;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;background:oklch(0.2 0.03 235 / .45);padding:6px 9px">{{ p.cap }}</span></sc-if>
           <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}">
             <div style="position:absolute;top:10px;left:10px;right:10px;display:flex;justify-content:space-between;gap:8px;align-items:flex-start;flex-wrap:wrap">
@@ -1479,7 +1479,7 @@ input,select,textarea,button{font-family:inherit}
     <div sc-camel-on-drag-over="{{ gal.parties.over }}" sc-camel-on-drop="{{ gal.parties.drop }}" style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px;margin-top:12px">
       <sc-for list="{{ gal.parties.items }}" as="p" hint-placeholder-count="5">
         <div draggable="{{ editing }}" sc-camel-on-drag-start="{{ p.dragStart }}" sc-camel-on-drag-over="{{ p.dragOver }}" sc-camel-on-drop="{{ p.drop }}" sc-camel-on-drag-end="{{ dragEnd }}" sc-camel-on-click="{{ p.open }}" style="position:relative;grid-column:{{ p.span }};height:{{ p.h }};overflow:hidden;background:oklch(0.93 0.015 75);cursor:{{ tileCursor }};opacity:{{ p.op }};box-shadow:{{ p.ring }}">
-          <img src="{{ p.src }}" alt="{{ p.cap }}" loading="lazy" draggable="false" style="width:100%;height:100%;object-fit:cover;pointer-events:none">
+          <img src="{{ p.src }}" srcset="{{ p.srcset }}" sizes="(max-width: 760px) 100vw, 50vw" alt="{{ p.cap }}" loading="lazy" draggable="false" style="width:100%;height:100%;object-fit:cover;pointer-events:none">
           <sc-if value="{{ viewing }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;left:16px;bottom:14px;color:#fff;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;background:oklch(0.2 0.03 235 / .45);padding:6px 9px">{{ p.cap }}</span></sc-if>
           <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}">
             <div style="position:absolute;top:10px;left:10px;right:10px;display:flex;justify-content:space-between;gap:8px;align-items:flex-start;flex-wrap:wrap">
@@ -1646,7 +1646,7 @@ class Component extends DCLogic {
         lv2: g([['assets/view-3b802c92081e7c.webp', 'The children’s floor']]),
         wellness: g([['assets/view-b21cfbdd8c92b2.webp', 'The gym and its arched mirrors'], ['assets/view-37ec9691a69c23.webp', 'The spa treatment room'], ['assets/view-a446a9c5b84b8c.webp', 'The hammam steam room']]),
         outdoors: g([['assets/view-8f0d9c0f73ccb2.webp', 'The grounds from above'], ['assets/view-6ca1e84400e5f4.webp', 'The pool pergola'], ['assets/view-b2bf3da9b96742.webp', 'The pool and cactus garden'], ['assets/view-8964ba923ee2f8.webp', 'Gardens running down to the sea'], ['assets/view-fa11d3e6900dc3.webp', 'The garden pavilion']]),
-        dining: g([['assets/view-7f5195e5460d0c.webp', 'Dinner on the garden terrace'], ['assets/view-ae7cda44455f8d.webp', 'Lunch by the pool'], ['assets/view-2e46fe7310f438.webp', 'Dining beneath the pergola'], ['assets/view-c564c7daa6f5bb.webp', 'The pergola table']]),
+        dining: g([['assets/view-7f5195e5460d0c.webp', 'Dinner on the garden terrace'], ['assets/view-ae7cda44455f8d.webp', 'Lunch by the pool'], ['assets/sea-view-dining-1536.webp', 'Dining on the sea-view terrace'], ['assets/view-c564c7daa6f5bb.webp', 'The pergola table']]),
         parties: g([['assets/view-561af299cd577e.webp', 'Dinner at golden hour'], ['assets/view-48c67905b80c35.webp', 'The terrace after dark'], ['assets/view-a9e7797110cce1.webp', 'The bar, facing the sea'], ['assets/view-e4992b4b4803d3.webp', 'On location']])
       },
       singles: { hero: 'assets/view-ac5e5bb5c45142.webp', poolbar: 'assets/view-369d5fc2da1d6b.webp', bbq: 'assets/view-a227471152db01.webp', celebrate: 'assets/view-7d04339d9d934f.webp', film: 'assets/view-a9c1adba973aca.webp', village: 'assets/view-cb159c292bf6a6.webp', club: 'assets/view-f92c8153467d76.webp' }
@@ -1815,7 +1815,7 @@ class Component extends DCLogic {
     const mkGal = gid => ({
       items: D.galleries[gid].map((it, i) => {
         const [span, h] = layouts[gid](i, D.galleries[gid].length);
-        return { src: it.src, cap: it.cap, num: String(i + 1).padStart(2, '0'), span, h, op: dim(gid, i), ring: ring(gid, i),
+        return { src: it.src, srcset: it.src.includes('sea-view-dining-') ? 'assets/sea-view-dining-640.webp 640w, assets/sea-view-dining-960.webp 960w, assets/sea-view-dining-1536.webp 1536w' : '', cap: it.cap, num: String(i + 1).padStart(2, '0'), span, h, op: dim(gid, i), ring: ring(gid, i),
           dragStart: e => this.dragStart(e, gid, i), dragOver: e => this.dragOverTile(e, gid, i), drop: e => this.dropAt(e, gid, i),
           open: () => { if (!ed) this.setState({ lb: { gid, i } }); },
           left: e => { stop(e); this.move(gid, i, i - 1); }, right: e => { stop(e); this.move(gid, i, i + 1); },
