@@ -1,5 +1,7 @@
 (() => {
   'use strict';
+  if (window.__villaLanguagesReady) return;
+  window.__villaLanguagesReady = true;
   const languages = { en: 'English', de: 'Deutsch', ru: 'Русский', zh: '简体中文', pt: 'Português', ar: 'العربية', es: 'Español' };
   const labels = { en: 'Language', de: 'Sprache', ru: 'Язык', zh: '语言', pt: 'Idioma', ar: 'اللغة', es: 'Idioma' };
   const normalize = text => text.replace(/\s+/g, ' ').trim().toLocaleLowerCase('en');
@@ -25,7 +27,7 @@
     const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
     let node;
     while ((node = walker.nextNode())) {
-      if (!node.parentElement || node.parentElement.closest('script,style,noscript,[data-language-control]')) continue;
+      if (!node.parentElement || node.parentElement.closest('script,style,noscript,x-dc,[data-language-control]')) continue;
       const prior = originals.get(node);
       const source = prior && node.data === prior.translated ? prior.source : node.data;
       const translated = translate(source);
@@ -33,7 +35,7 @@
       if (node.data !== translated) node.data = translated;
     }
     for (const element of root.querySelectorAll('[alt],[title],[aria-label],[placeholder]')) {
-      if (element.closest('[data-language-control]')) continue;
+      if (element.closest('x-dc,[data-language-control]')) continue;
       const prior = attributeOriginals.get(element) || {};
       for (const attr of ['alt', 'title', 'aria-label', 'placeholder']) {
         if (!element.hasAttribute(attr)) continue;
@@ -61,7 +63,7 @@
       select.append(option);
     }
     select.value = locale;
-    select.addEventListener('change', () => setLanguage(select.value, true));
+
     control.append(select);
     header.append(control);
   }
@@ -94,6 +96,10 @@
     }
     apply();
   }
+
+  document.addEventListener('change', event => {
+    if (event.target.id === 'site-language') setLanguage(event.target.value, true);
+  }, true);
 
   const style = document.createElement('style');
   style.textContent = `
