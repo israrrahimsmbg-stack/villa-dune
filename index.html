@@ -1690,7 +1690,7 @@ class Component extends DCLogic {
     window.addEventListener('dragover', this.guard);
     window.addEventListener('drop', this.guard);
     this.onScroll(); requestAnimationFrame(this.onScroll); this.t = setTimeout(this.onScroll, 400);
-    this.idb('readonly', s => s.get('data')).then(d => { if (d && typeof d === 'object' && d.galleries) this.setState({ data: this.normalize(d), saved: 'Saved in this browser' }); });
+    this.idb('readonly', s => s.get('data')).then(d => { if (this.state.editing && d && typeof d === 'object' && d.galleries) this.setState({ data: this.normalize(d), saved: 'Saved in this browser' }); });
     if (/[?&#]edit\b/.test(location.search + location.hash)) this.setState({ editing: true });
   }
   componentWillUnmount() {
