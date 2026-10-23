@@ -76,7 +76,7 @@
     localize(document.body);
     const select = document.getElementById('site-language');
     if (select) { select.value = locale; select.setAttribute('aria-label', labels[locale]); select.title = labels[locale]; }
-    document.title = 'Peach on the Beach — ' + (dictionary[normalize('Private Residence')]?.[locale] || 'Private Residence') + ', Pampelonne';
+    document.title = 'Villa Dune — ' + (dictionary[normalize('Private Residence')]?.[locale] || 'Private Residence') + ', Pampelonne';
     observer.observe(document.body, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ['alt', 'title', 'aria-label', 'placeholder'] });
   }
 
