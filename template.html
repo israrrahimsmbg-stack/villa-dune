@@ -7,7 +7,7 @@
 <body>
 <x-dc>
 <helmet>
-<title>Peach on the Beach — Private Residence, Pampelonne</title>
+<title>Villa Dune — Private Residence, Pampelonne</title>
 <meta name="description" content="A privately offered 600 m² residence in a gated community above Pampelonne, with private beach access. By private inquiry.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <style>/* cyrillic-ext */
@@ -372,7 +372,7 @@ input,select,textarea,button{font-family:inherit}
 <header style="position:fixed;inset:0 0 auto;z-index:20;transition:background .35s,color .35s,border-color .35s;background:{{ navBg }};color:{{ navInk }};border-bottom:1px solid {{ navLine }};backdrop-filter:blur(14px)">
   <div style="max-width:1320px;margin:0 auto;padding:0 clamp(18px,4vw,48px);height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px">
     <a href="#top" style="display:flex;flex-direction:column;gap:3px;line-height:1">
-      <span style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:500">Peach on the Beach</span>
+      <span style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:500">Villa Dune</span>
       <span style="font-size:9px;letter-spacing:.28em;text-transform:uppercase;opacity:.85;white-space:nowrap">{{ placeLine }}</span>
     </a>
     <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
@@ -397,7 +397,7 @@ input,select,textarea,button{font-family:inherit}
 </header>
 
 <section id="top" data-screen-label="Hero" sc-camel-on-drag-over="{{ single.hero.over }}" sc-camel-on-drop="{{ single.hero.drop }}" style="position:relative;min-height:max(640px,100svh);display:flex;flex-direction:column;justify-content:flex-end;color:oklch(0.98 0.005 80);overflow:hidden;background:oklch(0.22 0.03 235)">
-  <img src="{{ single.hero.src }}" alt="Peach on the Beach — residence, pool and Mediterranean gardens" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+  <img src="{{ single.hero.src }}" alt="Villa Dune — residence, pool and Mediterranean gardens" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
   <div style="position:absolute;inset:auto 0 0;height:38%;background:linear-gradient(180deg,oklch(0.16 0.03 235 / 0) 0%,oklch(0.16 0.03 235 / .38) 55%,oklch(0.14 0.03 235 / .66) 100%)"></div>
   <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}">
     <button type="button" sc-camel-on-click="{{ single.hero.replace }}" style="position:absolute;top:128px;right:clamp(18px,4vw,48px);z-index:3;border:0;background:oklch(0.98 0.005 80);color:oklch(0.24 0.02 60);height:40px;padding:0 16px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;cursor:pointer">Replace hero photo</button>
@@ -405,7 +405,7 @@ input,select,textarea,button{font-family:inherit}
   <div style="position:relative;max-width:1320px;width:100%;margin:0 auto;padding:0 clamp(18px,4vw,48px) clamp(22px,3vw,34px);display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 40px;text-shadow:0 1px 2px oklch(0.14 0.03 235 / .5)">
     <div style="display:flex;flex-direction:column;gap:10px;flex:1 1 420px">
       <div style="display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:oklch(0.93 0.05 60)"><span style="width:28px;height:1px;background:currentColor"></span>Saint-Tropez · Pampelonne</div>
-      <h1 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(40px,5.2vw,80px);line-height:.95;letter-spacing:-.015em;margin:0">Peach on the Beach</h1>
+      <h1 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(40px,5.2vw,80px);line-height:.95;letter-spacing:-.015em;margin:0">Villa Dune</h1>
       <p style="max-width:460px;font-size:15px;line-height:1.6;margin:0;color:oklch(0.96 0.01 80)">A gated residence above the bay, offered in full by its owner, with a private path to the sand.</p>
     </div>
     <div style="display:flex;gap:12px;flex-wrap:wrap;text-shadow:none">
@@ -981,7 +981,7 @@ class Component extends DCLogic {
   }
   exportJson() {
     const blob = new Blob([JSON.stringify({ version: 1, exported: new Date().toISOString(), ...this.data() })], { type: 'application/json' });
-    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'peach-on-the-beach-photos.json'; document.body.appendChild(a); a.click(); a.remove();
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'villa-dune-photos.json'; document.body.appendChild(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(a.href), 2000);
     this.toast('Layout exported');
   }
@@ -1036,7 +1036,7 @@ class Component extends DCLogic {
       drop: e => this.dropAt(e, gid, null),
       addH: layouts[gid](1)[1]
     });
-    const caps = { hero: 'Peach on the Beach', poolbar: 'The pool bar, first floor', bbq: 'The green marble bar, second floor', celebrate: 'Celebrations', film: 'Film & photography', village: 'Ramatuelle village', club: 'Le Club 55' };
+    const caps = { hero: 'Villa Dune', poolbar: 'The pool bar, first floor', bbq: 'The green marble bar, second floor', celebrate: 'Celebrations', film: 'Film & photography', village: 'Ramatuelle village', club: 'Le Club 55' };
     const single = {};
     Object.keys(D.singles).forEach(key => {
       single[key] = { src: D.singles[key],
@@ -1065,7 +1065,7 @@ class Component extends DCLogic {
     ];
     if (mode === 1) fields.push(mk('office', 'Agency / family office', 'text', true), mk('accreditation', 'Accreditation reference', 'text', false));
     const narrow = S.w < 980;
-    const buildMsg = () => [`Peach on the Beach — ${modeKeys[mode]}`, `Name: ${F.name}`, `Email: ${F.email}`, `WhatsApp / mobile: ${F.phone}`, `${mode === 2 ? 'Crew' : 'Party'}: ${F.party}`, `Dates: ${F.arrival} to ${F.departure}`, mode === 1 ? `Office: ${F.office}${F.accreditation ? ' · Ref: ' + F.accreditation : ''}` : '', '', F.notes].filter(x => x !== '').join('\n');
+    const buildMsg = () => [`Villa Dune — ${modeKeys[mode]}`, `Name: ${F.name}`, `Email: ${F.email}`, `WhatsApp / mobile: ${F.phone}`, `${mode === 2 ? 'Crew' : 'Party'}: ${F.party}`, `Dates: ${F.arrival} to ${F.departure}`, mode === 1 ? `Office: ${F.office}${F.accreditation ? ' · Ref: ' + F.accreditation : ''}` : '', '', F.notes].filter(x => x !== '').join('\n');
     let lbv = { src: '', cap: '', count: '', multi: false };
     if (S.lb && S.lb.gid != null) { const arr = D.galleries[S.lb.gid], it = arr[S.lb.i]; if (it) lbv = { src: it.src, cap: it.cap, count: arr.length > 1 ? `· ${S.lb.i + 1} / ${arr.length}` : '', multi: arr.length > 1 }; }
     else if (S.lb && S.lb.key) lbv = { src: D.singles[S.lb.key], cap: caps[S.lb.key], count: '', multi: false };
@@ -1122,7 +1122,7 @@ class Component extends DCLogic {
         this.setState({ sent: true });
       },
       reset: () => this.setState({ sent: false }),
-      waHref: whatsapp ? `https://wa.me/${whatsapp}?text=${encodeURIComponent('Good day. I am writing regarding Peach on the Beach, Pampelonne. I would appreciate a confidential conversation about a stay.')}` : `mailto:${email}`,
+      waHref: whatsapp ? `https://wa.me/${whatsapp}?text=${encodeURIComponent('Good day. I am writing regarding Villa Dune, Pampelonne. I would appreciate a confidential conversation about a stay.')}` : `mailto:${email}`,
       lbOpen: !!S.lb && !!lbv.src, lb: lbv,
       closeLb: e => { stop(e); this.setState({ lb: null }); },
       lbPrev: e => { stop(e); this.stepLb(-1); }, lbNext: e => { stop(e); this.stepLb(1); },
