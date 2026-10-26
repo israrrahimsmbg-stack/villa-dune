@@ -737,6 +737,28 @@ input,select,textarea,button{font-family:inherit}
 </style>
 <link rel="preload" as="image" href="assets/view-ac5e5bb5c45142.webp" imagesrcset="assets/hero-640.webp 640w, assets/hero-960.webp 960w, assets/view-ac5e5bb5c45142.webp 1672w" imagesizes="100vw">
 <script>window.__resources={"https://unpkg.com/react@18.3.1/umd/react.production.min.js":"assets/runtime-6822817c-e6b8-45c4-a57b-46001611e526.js","https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js":"assets/runtime-d49d45d7-2421-4760-bce4-e94dc5e9f9f8.js"};</script><script defer src="assets/runtime-c04fa86a-fadc-4c58-9b4f-2f8fe2fc7d7d.js"></script></head>
+<style id="responsive-fixes">
+/* Phones: the photograph fills the screen above a solid caption panel, with no empty band between them. */
+@media(max-width:760px){
+html body :is(#top,#initial-hero){min-height:100svh!important;height:auto!important;grid-template-rows:minmax(0,1fr) auto!important;padding-top:72px}
+html body :is(#top,#initial-hero)>img{grid-row:1;height:100%!important;min-height:240px;aspect-ratio:auto!important;object-fit:cover!important;object-position:42% 55%!important;align-self:stretch}
+html body :is(#top,#initial-hero) .hero-content{justify-content:flex-start!important;gap:18px!important;padding:24px 24px max(28px,env(safe-area-inset-bottom))!important}
+html body .hero-metrics>div{padding-right:10px!important}
+html body .hero-metrics strong{font-size:20px!important;line-height:1.15!important;text-wrap:balance}
+html body .floor-thumbs{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px!important}
+html body .floor-thumbs>div{width:auto!important;height:auto!important;aspect-ratio:1}
+}
+@media(max-width:760px) and (max-height:620px){html body :is(#top,#initial-hero){height:auto!important}html body :is(#top,#initial-hero)>img{height:auto!important;aspect-ratio:16/9!important}}
+/* Tablets: keep the three wellness rooms on one row and let an odd last offer card span the row. */
+@media(min-width:700px) and (max-width:1099px){
+html body .wellness-gallery{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+html body .wellness-gallery>*{height:300px!important}
+html body .offer-grid>:last-child:nth-child(odd){grid-column:1/-1}
+}
+@media(max-width:1099px){html body .offer-grid>article{min-height:0!important}html body .offer-grid>article>ul{margin-top:8px!important}}
+/* Landscape phones and short screens: the hero fits in the viewport instead of a 640px minimum. */
+@media(min-width:761px) and (max-height:620px){html body #top,html body #initial-hero{min-height:100svh!important}html body :is(#top,#initial-hero) .hero-shade{height:70%!important}}
+</style>
 <body><div id="initial-view"><header>Villa Dune</header><section id="initial-hero" data-screen-label="Hero" style="position:relative;min-height:max(640px,100svh);display:flex;flex-direction:column;justify-content:flex-end;color:oklch(0.98 0.005 80);overflow:hidden;background:oklch(0.22 0.03 235)">
   <img fetchpriority="high" decoding="async" srcset="assets/hero-640.webp 640w, assets/hero-960.webp 960w, assets/view-ac5e5bb5c45142.webp 1672w" sizes="100vw" src="assets/view-ac5e5bb5c45142.webp" alt="Villa Dune — residence, pool and Mediterranean gardens" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
   <div class="hero-shade" style="position:absolute;inset:auto 0 0;height:38%;background:linear-gradient(180deg,oklch(0.16 0.03 235 / 0) 0%,oklch(0.16 0.03 235 / .38) 55%,oklch(0.14 0.03 235 / .66) 100%)"></div>
@@ -1207,7 +1229,7 @@ input,select,textarea,button{font-family:inherit}
 
 <section data-screen-label="Key facts" style="padding:0 clamp(18px,4vw,48px)">
   <div style="max-width:1320px;margin:0 auto">
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(50%,200px),1fr));border-bottom:1px solid oklch(0.86 0.015 75)">
+    <div class="hero-metrics" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(50%,200px),1fr));border-bottom:1px solid oklch(0.86 0.015 75)">
       <sc-for list="{{ metrics }}" as="m" hint-placeholder-count="5">
         <div style="padding:26px 20px 24px 0;display:flex;flex-direction:column;gap:8px">
           <small style="font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:oklch(0.45 0.02 60)">{{ m.k }}</small>
@@ -1286,10 +1308,10 @@ input,select,textarea,button{font-family:inherit}
               </div>
             </sc-for>
           </div>
-          <div sc-camel-on-drag-over="{{ level.over }}" sc-camel-on-drop="{{ level.drop }}" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:20px">
+          <div class="floor-thumbs" sc-camel-on-drag-over="{{ level.over }}" sc-camel-on-drop="{{ level.drop }}" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:20px">
             <sc-for list="{{ level.thumbs }}" as="th" hint-placeholder-count="4">
               <div draggable="{{ editing }}" sc-camel-on-drag-start="{{ th.dragStart }}" sc-camel-on-drag-over="{{ th.dragOver }}" sc-camel-on-drop="{{ th.drop }}" sc-camel-on-drag-end="{{ dragEnd }}" sc-camel-on-click="{{ th.select }}" title="{{ th.cap }}" style="position:relative;width:72px;height:72px;cursor:{{ tileCursor }};opacity:{{ th.op }};outline:{{ th.outline }};outline-offset:2px;box-shadow:{{ th.ring }};background:oklch(0.93 0.015 75)">
-                <img src="{{ th.src }}" alt="" draggable="false" style="width:100%;height:100%;object-fit:cover;pointer-events:none">
+                <img src="{{ th.src }}" alt="" loading="lazy" decoding="async" draggable="false" style="width:100%;height:100%;object-fit:cover;pointer-events:none">
                 <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}">
                   <button type="button" sc-camel-on-click="{{ th.del }}" aria-label="Delete photo" style="position:absolute;top:-8px;right:-8px;width:24px;height:24px;border-radius:50%;border:0;background:oklch(0.52 0.17 30);color:#fff;font-size:14px;line-height:1;cursor:pointer">×</button>
                 </sc-if>
@@ -1323,7 +1345,7 @@ input,select,textarea,button{font-family:inherit}
         </div>
         <p style="font-size:16px;line-height:1.8;color:oklch(0.42 0.02 60);margin:0;max-width:540px">The pool level brings together the gym, spa and hammam, while the en-suite bathrooms include generous showers and&nbsp; bathtubs.</p>
       </div>
-      <div sc-camel-on-drag-over="{{ gal.wellness.over }}" sc-camel-on-drop="{{ gal.wellness.drop }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px">
+      <div class="wellness-gallery" sc-camel-on-drag-over="{{ gal.wellness.over }}" sc-camel-on-drop="{{ gal.wellness.drop }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px">
         <sc-for list="{{ gal.wellness.items }}" as="p" hint-placeholder-count="5">
           <div draggable="{{ editing }}" sc-camel-on-drag-start="{{ p.dragStart }}" sc-camel-on-drag-over="{{ p.dragOver }}" sc-camel-on-drop="{{ p.drop }}" sc-camel-on-drag-end="{{ dragEnd }}" sc-camel-on-click="{{ p.open }}" style="position:relative;grid-column:{{ p.span }};height:{{ p.h }};overflow:hidden;background:oklch(0.93 0.015 75);cursor:{{ tileCursor }};opacity:{{ p.op }};box-shadow:{{ p.ring }}">
             <img src="{{ p.src }}" srcset="{{ p.srcset }}" sizes="(max-width: 760px) 100vw, 50vw" alt="{{ p.cap }}" loading="lazy" draggable="false" style="width:100%;height:100%;object-fit:cover;pointer-events:none">
@@ -1426,13 +1448,13 @@ input,select,textarea,button{font-family:inherit}
       <p style="font-size:15px;line-height:1.8;color:oklch(0.42 0.02 60);margin:0;max-width:540px">One bar sits beside the pool and outdoor kitchen; the other turns toward the bay for drinks in the last light.</p>
     </div>
     <div sc-camel-on-click="{{ single.poolbar.open }}" sc-camel-on-drag-over="{{ single.poolbar.over }}" sc-camel-on-drop="{{ single.poolbar.drop }}" style="position:relative;cursor:{{ tileCursor }};width:100%;height:clamp(280px,38vw,480px);overflow:hidden;background:oklch(0.93 0.015 75)">
-      <img src="{{ single.poolbar.src }}" alt="The white marble pool bar with barbecue grill" loading="lazy" style="width:100%;height:100%;object-fit:cover">
+      <img src="{{ single.poolbar.src }}" srcset="{{ single.poolbar.srcset }}" sizes="(max-width: 760px) 100vw, 1240px" decoding="async" alt="The white marble pool bar with barbecue grill" loading="lazy" style="width:100%;height:100%;object-fit:cover">
       <span style="position:absolute;left:16px;bottom:14px;color:#fff;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;background:oklch(0.2 0.03 235 / .45);padding:6px 9px">The pool bar, first floor</span>
       <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}"><button type="button" sc-camel-on-click="{{ single.poolbar.replace }}" style="position:absolute;top:12px;right:12px;border:0;background:oklch(0.98 0.005 80);color:oklch(0.24 0.02 60);height:34px;padding:0 12px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;cursor:pointer">Replace photo</button></sc-if>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));margin-top:12px;background:oklch(0.3 0.045 235);color:oklch(0.97 0.008 80)">
       <div sc-camel-on-click="{{ single.bbq.open }}" sc-camel-on-drag-over="{{ single.bbq.over }}" sc-camel-on-drop="{{ single.bbq.drop }}" style="position:relative;cursor:{{ tileCursor }};min-height:440px;overflow:hidden;background:oklch(0.25 0.03 235)">
-        <img src="{{ single.bbq.src }}" alt="The green marble bar on the second floor" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <img src="{{ single.bbq.src }}" srcset="{{ single.bbq.srcset }}" sizes="(max-width: 760px) 100vw, 50vw" decoding="async" alt="The green marble bar on the second floor" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
         <span style="position:absolute;left:16px;bottom:14px;color:#fff;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;background:oklch(0.2 0.03 235 / .45);padding:6px 9px">The green marble bar, second floor</span>
         <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}"><button type="button" sc-camel-on-click="{{ single.bbq.replace }}" style="position:absolute;top:12px;right:12px;border:0;background:oklch(0.98 0.005 80);color:oklch(0.24 0.02 60);height:34px;padding:0 12px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;cursor:pointer">Replace photo</button></sc-if>
       </div>
@@ -1456,7 +1478,7 @@ input,select,textarea,button{font-family:inherit}
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:12px">
       <article sc-camel-on-drag-over="{{ single.celebrate.over }}" sc-camel-on-drop="{{ single.celebrate.drop }}" style="position:relative;min-height:560px;overflow:hidden;color:oklch(0.98 0.005 80);background:oklch(0.22 0.03 235)">
-        <img src="{{ single.celebrate.src }}" alt="The pool terrace set for a private celebration" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <img src="{{ single.celebrate.src }}" srcset="{{ single.celebrate.srcset }}" sizes="(max-width: 760px) 100vw, 50vw" decoding="async" alt="The pool terrace set for a private celebration" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,oklch(0.16 0.03 235 / .55) 58%,oklch(0.16 0.03 235 / .92) 100%)"></div>
         <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}"><button type="button" sc-camel-on-click="{{ single.celebrate.replace }}" style="position:absolute;z-index:2;top:12px;right:12px;border:0;background:oklch(0.98 0.005 80);color:oklch(0.24 0.02 60);height:34px;padding:0 12px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;cursor:pointer">Replace photo</button></sc-if>
         <div style="position:absolute;left:30px;right:30px;bottom:30px">
@@ -1466,7 +1488,7 @@ input,select,textarea,button{font-family:inherit}
         </div>
       </article>
       <article sc-camel-on-drag-over="{{ single.film.over }}" sc-camel-on-drop="{{ single.film.drop }}" style="position:relative;min-height:560px;overflow:hidden;color:oklch(0.98 0.005 80);background:oklch(0.22 0.03 235)">
-        <img src="{{ single.film.src }}" alt="A creative production on the sea-view terrace" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <img src="{{ single.film.src }}" srcset="{{ single.film.srcset }}" sizes="(max-width: 760px) 100vw, 50vw" decoding="async" alt="A creative production on the sea-view terrace" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,oklch(0.16 0.03 235 / .55) 58%,oklch(0.16 0.03 235 / .92) 100%)"></div>
         <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}"><button type="button" sc-camel-on-click="{{ single.film.replace }}" style="position:absolute;z-index:2;top:12px;right:12px;border:0;background:oklch(0.98 0.005 80);color:oklch(0.24 0.02 60);height:34px;padding:0 12px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;cursor:pointer">Replace photo</button></sc-if>
         <div style="position:absolute;left:30px;right:30px;bottom:30px">
@@ -1513,7 +1535,7 @@ input,select,textarea,button{font-family:inherit}
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:12px">
       <article sc-camel-on-drag-over="{{ single.village.over }}" sc-camel-on-drop="{{ single.village.drop }}" style="position:relative;min-height:520px;overflow:hidden;color:oklch(0.98 0.005 80);background:oklch(0.22 0.03 235)">
-        <img src="{{ single.village.src }}" alt="Hilltop village of Ramatuelle above green countryside" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <img src="{{ single.village.src }}" srcset="{{ single.village.srcset }}" sizes="(max-width: 760px) 100vw, 50vw" decoding="async" alt="Hilltop village of Ramatuelle above green countryside" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,oklch(0.16 0.03 235 / .55) 58%,oklch(0.16 0.03 235 / .9) 100%)"></div>
         <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}"><button type="button" sc-camel-on-click="{{ single.village.replace }}" style="position:absolute;z-index:2;top:12px;right:12px;border:0;background:oklch(0.98 0.005 80);color:oklch(0.24 0.02 60);height:34px;padding:0 12px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;cursor:pointer">Replace photo</button></sc-if>
         <div style="position:absolute;left:30px;right:30px;bottom:30px">
@@ -1523,7 +1545,7 @@ input,select,textarea,button{font-family:inherit}
         </div>
       </article>
       <article sc-camel-on-drag-over="{{ single.club.over }}" sc-camel-on-drop="{{ single.club.drop }}" style="position:relative;min-height:520px;overflow:hidden;color:oklch(0.98 0.005 80);background:oklch(0.22 0.03 235)">
-        <img src="{{ single.club.src }}" alt="The rustic entrance sign at Le Club 55 on Pampelonne Beach" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <img src="{{ single.club.src }}" srcset="{{ single.club.srcset }}" sizes="(max-width: 760px) 100vw, 50vw" decoding="async" alt="The rustic entrance sign at Le Club 55 on Pampelonne Beach" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,oklch(0.16 0.03 235 / .55) 58%,oklch(0.16 0.03 235 / .9) 100%)"></div>
         <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}"><button type="button" sc-camel-on-click="{{ single.club.replace }}" style="position:absolute;z-index:2;top:12px;right:12px;border:0;background:oklch(0.98 0.005 80);color:oklch(0.24 0.02 60);height:34px;padding:0 12px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;cursor:pointer">Replace photo</button></sc-if>
         <div style="position:absolute;left:30px;right:30px;bottom:30px">
@@ -1564,7 +1586,7 @@ input,select,textarea,button{font-family:inherit}
       </div>
       <p style="font-size:16px;line-height:1.8;color:oklch(0.42 0.02 60);margin:0;max-width:540px">Every arrangement begins with a direct conversation. Dates, terms, inclusions and any additional services are confirmed in writing.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:1px;background:oklch(0.82 0.02 70);border:1px solid oklch(0.82 0.02 70)">
+    <div class="offer-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:1px;background:oklch(0.82 0.02 70);border:1px solid oklch(0.82 0.02 70)">
       <sc-for list="{{ tiers }}" as="t" hint-placeholder-count="3">
         <article style="background:oklch(0.975 0.008 80);padding:clamp(28px,3vw,40px);display:flex;flex-direction:column;gap:18px;min-height:460px">
           <div style="font-size:11px;letter-spacing:.2em;color:oklch(0.52 0.12 45)">{{ t.num }}</div>
@@ -1624,7 +1646,7 @@ input,select,textarea,button{font-family:inherit}
 
 <sc-if value="{{ lbOpen }}" hint-placeholder-val="{{ false }}">
   <div sc-camel-on-click="{{ closeLb }}" style="position:fixed;inset:0;z-index:50;background:oklch(0.14 0.02 235 / .96);display:flex;align-items:center;justify-content:center;padding:clamp(16px,5vw,64px)">
-    <img src="{{ lb.src }}" alt="{{ lb.cap }}" sc-camel-on-click="{{ stop }}" style="max-width:100%;max-height:84vh;object-fit:contain">
+    <img src="{{ lb.src }}" alt="{{ lb.cap }}" decoding="async" sc-camel-on-click="{{ stop }}" style="max-width:100%;max-height:84vh;object-fit:contain">
     <p style="position:absolute;bottom:18px;left:0;right:0;text-align:center;margin:0;color:oklch(0.9 0.01 230);font-size:11px;letter-spacing:.2em;text-transform:uppercase">{{ lb.cap }} {{ lb.count }}</p>
     <sc-if value="{{ lb.multi }}" hint-placeholder-val="{{ false }}">
       <button type="button" sc-camel-on-click="{{ lbPrev }}" aria-label="Previous photo" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);border:0;background:transparent;color:#fff;font-family:'Cormorant Garamond',serif;font-size:48px;min-width:56px;min-height:56px;cursor:pointer">‹</button>
@@ -1810,12 +1832,14 @@ class Component extends DCLogic {
       outdoors: i => i === 0 ? ['1/-1', 'clamp(320px,48vw,580px)'] : ['auto', '380px'],
       wellness: () => ['auto', '360px'], dining: i => S.w < 760 ? ['1/-1', '300px'] : [['span 7', 'span 5', 'span 5', 'span 7'][i % 4], 'clamp(300px,34vw,460px)'], parties: (i, n) => S.w < 760 ? ['1/-1', '280px'] : (() => { const r = (n || 5) % 3, big = r === 2 ? 2 : r === 1 ? 4 : 0; if (i < big) return [r === 2 ? ['span 7', 'span 5'][i] : 'span 6', 'clamp(300px,32vw,440px)']; return ['span 4', '320px']; })()
     };
+    // Bundled photographs ship with 320/640/960/1200 px copies so phones never download the full-size file.
+    const sized = src => /^assets\/view-[0-9a-f]+\.webp$/.test(src) ? src.replace('.webp', '-640.webp') + ' 640w, ' + src.replace('.webp', '-960.webp') + ' 960w, ' + src.replace('.webp', '-1200.webp') + ' 1200w, ' + src + ' 1536w' : '';
     const ring = (gid, i) => S.over && S.over.gid === gid && S.over.i === i ? 'inset 0 0 0 3px oklch(0.62 0.12 45)' : 'none';
     const dim = (gid, i) => S.drag && S.drag.gid === gid && S.drag.i === i ? 0.35 : 1;
     const mkGal = gid => ({
       items: D.galleries[gid].map((it, i) => {
         const [span, h] = layouts[gid](i, D.galleries[gid].length);
-        return { src: it.src, srcset: it.src.includes('sea-view-dining-') ? 'assets/sea-view-dining-640.webp 640w, assets/sea-view-dining-960.webp 960w, assets/sea-view-dining-1536.webp 1536w' : '', cap: it.cap, num: String(i + 1).padStart(2, '0'), span, h, op: dim(gid, i), ring: ring(gid, i),
+        return { src: it.src, srcset: it.src.includes('sea-view-dining-') ? 'assets/sea-view-dining-640.webp 640w, assets/sea-view-dining-960.webp 960w, assets/sea-view-dining-1536.webp 1536w' : sized(it.src), cap: it.cap, num: String(i + 1).padStart(2, '0'), span, h, op: dim(gid, i), ring: ring(gid, i),
           dragStart: e => this.dragStart(e, gid, i), dragOver: e => this.dragOverTile(e, gid, i), drop: e => this.dropAt(e, gid, i),
           open: () => { if (!ed) this.setState({ lb: { gid, i } }); },
           left: e => { stop(e); this.move(gid, i, i - 1); }, right: e => { stop(e); this.move(gid, i, i + 1); },
@@ -1830,7 +1854,7 @@ class Component extends DCLogic {
     const caps = { hero: 'Villa Dune', poolbar: 'The pool bar, first floor', bbq: 'The green marble bar, second floor', celebrate: 'Celebrations', film: 'Film & photography', village: 'Ramatuelle village', club: 'Le Club 55' };
     const single = {};
     Object.keys(D.singles).forEach(key => {
-      single[key] = { src: D.singles[key],
+      single[key] = { src: D.singles[key], srcset: sized(D.singles[key]),
         replace: e => { stop(e); this.pick({ type: 'single', key }); },
         over: e => { if (ed) e.preventDefault(); },
         drop: e => { if (!ed) return; e.preventDefault(); e.stopPropagation(); this.setState({ drag: null, over: null }); const f = (e.dataTransfer.files || [])[0]; if (f) this.replaceSingle(key, f); },
@@ -1876,14 +1900,14 @@ class Component extends DCLogic {
       single,
       levelTabs: levels.map((l, i) => ({ num: l.num, label: l.label, bg: i === S.level ? sea : 'transparent', ink: i === S.level ? paper : ink, select: () => this.setState({ level: i, img: 0 }) })),
       level: { k: L.k, t: L.t, b: L.b, f: L.f.map(([k, v]) => ({ k, v })), hasImg: !!cur, showReplace: ed && !!cur,
-        thumbs: ed || limgs.length > 1 ? limgs.map((it, i) => ({ src: it.src.includes('principal-terrace-') ? 'assets/principal-terrace-320.webp' : it.src, cap: it.cap, op: i === li ? 1 : 0.55, outline: i === li ? '1px solid oklch(0.52 0.12 45)' : 'none', ring: ring(lgid, i),
+        thumbs: ed || limgs.length > 1 ? limgs.map((it, i) => ({ src: it.src.includes('principal-terrace-') ? 'assets/principal-terrace-320.webp' : /^assets\/view-[0-9a-f]+\.webp$/.test(it.src) ? it.src.replace('.webp', '-320.webp') : it.src, cap: it.cap, op: i === li ? 1 : 0.55, outline: i === li ? '1px solid oklch(0.52 0.12 45)' : 'none', ring: ring(lgid, i),
           select: () => this.setState(ed ? { img: i } : { img: i, lb: { gid: lgid, i } }), dragStart: e => this.dragStart(e, lgid, i), dragOver: e => this.dragOverTile(e, lgid, i), drop: e => this.dropAt(e, lgid, i),
           del: e => { stop(e); this.remove(lgid, i); } })) : [],
         add: () => this.pick({ type: 'add', gid: lgid }), over: e => { if (ed) e.preventDefault(); }, drop: e => this.dropAt(e, lgid, null),
         open: () => { if (!ed && cur) this.setState({ lb: { gid: lgid, i: li } }); },
         replace: e => { stop(e); this.pick({ type: 'replace', gid: lgid, i: li }); },
         setCap: e => { const v = e.target.value; this.commit(d => ({ ...d, galleries: { ...d.galleries, [lgid]: d.galleries[lgid].map((x, j) => j === li ? { ...x, cap: v } : x) } }), false); } },
-      levelImg: cur ? { src: cur.src, cap: cur.cap, fit: cur.src.includes('principal-terrace-') ? 'contain' : 'cover', srcset: cur.src.includes('principal-terrace-') ? 'assets/principal-terrace-640.webp 640w, assets/principal-terrace-960.webp 960w, assets/principal-terrace-1448.webp 1448w' : '' } : { src: '', cap: '', fit: 'cover', srcset: '' },
+      levelImg: cur ? { src: cur.src, cap: cur.cap, fit: cur.src.includes('principal-terrace-') ? 'contain' : 'cover', srcset: cur.src.includes('principal-terrace-') ? 'assets/principal-terrace-640.webp 640w, assets/principal-terrace-960.webp 960w, assets/principal-terrace-1448.webp 1448w' : sized(cur.src) } : { src: '', cap: '', fit: 'cover', srcset: '' },
       times: [{ k: 'Pampelonne Beach', v: '2 min walk' }, { k: 'Le Club 55', v: 'Within walking distance' }, { k: 'Ramatuelle Village', v: '10 min drive' }, { k: 'Saint-Tropez Port', v: '15 min drive' }],
       tiers: [
         { num: '01', title: 'Private Residence', body: 'Exclusive use of the house, pool, gardens and guest accommodation for one party.', items: ['1 master + 5 en-suite guest rooms', 'Separate children’s floor', 'Staff accommodation sleeping four', 'Daily housekeeping & caretaker'], tariff: 'Rates on request', pick: () => this.setState({ mode: 0 }) },
