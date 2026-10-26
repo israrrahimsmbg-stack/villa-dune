@@ -738,17 +738,16 @@ input,select,textarea,button{font-family:inherit}
 <link rel="preload" as="image" href="assets/view-ac5e5bb5c45142.webp" imagesrcset="assets/hero-640.webp 640w, assets/hero-960.webp 960w, assets/view-ac5e5bb5c45142.webp 1672w" imagesizes="100vw">
 <script>window.__resources={"https://unpkg.com/react@18.3.1/umd/react.production.min.js":"assets/runtime-6822817c-e6b8-45c4-a57b-46001611e526.js","https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js":"assets/runtime-d49d45d7-2421-4760-bce4-e94dc5e9f9f8.js"};</script><script defer src="assets/runtime-c04fa86a-fadc-4c58-9b4f-2f8fe2fc7d7d.js"></script></head>
 <style id="responsive-fixes">
-/* Phones: the photograph fills the screen above a solid caption panel, with no empty band between them. */
+/* Phones: the whole photograph, uncropped, directly above a solid caption panel with no empty band. */
 @media(max-width:760px){
-html body :is(#top,#initial-hero){min-height:100svh!important;height:auto!important;grid-template-rows:minmax(0,1fr) auto!important;padding-top:72px}
-html body :is(#top,#initial-hero)>img{grid-row:1;height:100%!important;min-height:240px;aspect-ratio:auto!important;object-fit:cover!important;object-position:42% 55%!important;align-self:stretch}
-html body :is(#top,#initial-hero) .hero-content{justify-content:flex-start!important;gap:18px!important;padding:24px 24px max(28px,env(safe-area-inset-bottom))!important}
+html body :is(#top,#initial-hero){min-height:0!important;height:auto!important;grid-template-rows:auto auto!important;padding-top:72px}
+html body :is(#top,#initial-hero)>img{grid-row:1;width:100%!important;height:auto!important;min-height:0;aspect-ratio:1672/941!important;object-fit:cover!important;object-position:center!important;align-self:start}
+html body :is(#top,#initial-hero) .hero-content{justify-content:flex-start!important;gap:18px!important;padding:30px 24px max(36px,env(safe-area-inset-bottom))!important}
 html body .hero-metrics>div{padding-right:10px!important}
 html body .hero-metrics strong{font-size:20px!important;line-height:1.15!important;text-wrap:balance}
 html body .floor-thumbs{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px!important}
 html body .floor-thumbs>div{width:auto!important;height:auto!important;aspect-ratio:1}
 }
-@media(max-width:760px) and (max-height:620px){html body :is(#top,#initial-hero){height:auto!important}html body :is(#top,#initial-hero)>img{height:auto!important;aspect-ratio:16/9!important}}
 /* Tablets: keep the three wellness rooms on one row and let an odd last offer card span the row. */
 @media(min-width:700px) and (max-width:1099px){
 html body .wellness-gallery{grid-template-columns:repeat(3,minmax(0,1fr))!important}
@@ -756,6 +755,13 @@ html body .wellness-gallery>*{height:300px!important}
 html body .offer-grid>:last-child:nth-child(odd){grid-column:1/-1}
 }
 @media(max-width:1099px){html body .offer-grid>article{min-height:0!important}html body .offer-grid>article>ul{margin-top:8px!important}}
+/* Photo viewer: fades in, the page behind it cannot be dragged, and the photo uses the whole screen. */
+.photo-viewer{background:#0c1417!important;animation:viewer-in .28s ease-out;touch-action:pinch-zoom;overscroll-behavior:contain}
+.photo-viewer>img{animation:viewer-img .35s ease-out}
+@keyframes viewer-in{from{opacity:0}to{opacity:1}}
+@keyframes viewer-img{from{opacity:0;transform:scale(.98)}to{opacity:1;transform:none}}
+@media(max-width:760px){.photo-viewer{padding:56px 0 64px!important}.photo-viewer>img{max-height:calc(100svh - 120px)!important}.photo-viewer>p{bottom:max(20px,env(safe-area-inset-bottom))!important;padding:0 24px}}
+@media(prefers-reduced-motion:reduce){.photo-viewer,.photo-viewer>img{animation:none}}
 /* Landscape phones and short screens: the hero fits in the viewport instead of a 640px minimum. */
 @media(min-width:761px) and (max-height:620px){html body #top,html body #initial-hero{min-height:100svh!important}html body :is(#top,#initial-hero) .hero-shade{height:70%!important}}
 </style>
@@ -1645,8 +1651,8 @@ input,select,textarea,button{font-family:inherit}
 </sc-if>
 
 <sc-if value="{{ lbOpen }}" hint-placeholder-val="{{ false }}">
-  <div sc-camel-on-click="{{ closeLb }}" style="position:fixed;inset:0;z-index:50;background:oklch(0.14 0.02 235 / .96);display:flex;align-items:center;justify-content:center;padding:clamp(16px,5vw,64px)">
-    <img src="{{ lb.src }}" alt="{{ lb.cap }}" decoding="async" sc-camel-on-click="{{ stop }}" style="max-width:100%;max-height:84vh;object-fit:contain">
+  <div class="photo-viewer" role="dialog" aria-modal="true" aria-label="{{ lb.cap }}" sc-camel-on-click="{{ closeLb }}" style="position:fixed;inset:0;z-index:50;background:oklch(0.14 0.02 235 / .96);display:flex;align-items:center;justify-content:center;padding:clamp(16px,5vw,64px)">
+    <img src="{{ lb.src }}" srcset="{{ lb.srcset }}" sizes="100vw" alt="{{ lb.cap }}" decoding="async" sc-camel-on-click="{{ stop }}" style="max-width:100%;max-height:84vh;object-fit:contain">
     <p style="position:absolute;bottom:18px;left:0;right:0;text-align:center;margin:0;color:oklch(0.9 0.01 230);font-size:11px;letter-spacing:.2em;text-transform:uppercase">{{ lb.cap }} {{ lb.count }}</p>
     <sc-if value="{{ lb.multi }}" hint-placeholder-val="{{ false }}">
       <button type="button" sc-camel-on-click="{{ lbPrev }}" aria-label="Previous photo" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);border:0;background:transparent;color:#fff;font-family:'Cormorant Garamond',serif;font-size:48px;min-width:56px;min-height:56px;cursor:pointer">‹</button>
@@ -1705,10 +1711,19 @@ class Component extends DCLogic {
       if (lb) { if (e.key === 'Escape') this.setState({ lb: null }); if (e.key === 'ArrowRight') this.stepLb(1); if (e.key === 'ArrowLeft') this.stepLb(-1); return; }
       if (this.state.editing && !typing && (e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'z') { e.preventDefault(); this.undo(); }
     };
+    this.onTouchStart = e => { const t = e.touches[0]; this.touch = this.state.lb && e.touches.length === 1 ? { x: t.clientX, y: t.clientY } : null; };
+    this.onTouchEnd = e => {
+      const s0 = this.touch; this.touch = null; if (!s0 || !this.state.lb) return;
+      const t = e.changedTouches[0], dx = t.clientX - s0.x, dy = t.clientY - s0.y;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) this.stepLb(dx < 0 ? 1 : -1);
+      else if (dy > 80 && dy > Math.abs(dx) * 1.5) this.setState({ lb: null });
+    };
     this.guard = e => { if (this.state.editing) e.preventDefault(); };
     window.addEventListener('scroll', this.onScroll, { passive: true });
     window.addEventListener('resize', this.onScroll);
     window.addEventListener('keydown', this.onKey);
+    window.addEventListener('touchstart', this.onTouchStart, { passive: true });
+    window.addEventListener('touchend', this.onTouchEnd, { passive: true });
     window.addEventListener('dragover', this.guard);
     window.addEventListener('drop', this.guard);
     this.onScroll(); requestAnimationFrame(this.onScroll); this.t = setTimeout(this.onScroll, 400);
@@ -1717,6 +1732,7 @@ class Component extends DCLogic {
   }
   componentWillUnmount() {
     window.removeEventListener('scroll', this.onScroll); window.removeEventListener('resize', this.onScroll); window.removeEventListener('keydown', this.onKey);
+    window.removeEventListener('touchstart', this.onTouchStart); window.removeEventListener('touchend', this.onTouchEnd);
     window.removeEventListener('dragover', this.guard); window.removeEventListener('drop', this.guard);
     clearTimeout(this.t); clearTimeout(this.st); clearTimeout(this.tt);
   }
@@ -1819,7 +1835,8 @@ class Component extends DCLogic {
   stepLb(dir) {
     const lb = this.state.lb; if (!lb || lb.gid == null) return;
     const n = this.data().galleries[lb.gid].length; if (n < 2) return;
-    this.setState({ lb: { gid: lb.gid, i: (lb.i + dir + n) % n } });
+    const i = (lb.i + dir + n) % n;
+    this.setState(/^lv\d/.test(lb.gid) ? { lb: { gid: lb.gid, i }, img: i } : { lb: { gid: lb.gid, i } });
   }
   renderVals() {
     const P = this.props, S = this.state, D = this.data(), ed = S.editing;
@@ -1882,8 +1899,8 @@ class Component extends DCLogic {
     const narrow = S.w < 980;
     const buildMsg = () => [`Villa Dune — ${modeKeys[mode]}`, `Name: ${F.name}`, `Email: ${F.email}`, `WhatsApp / mobile: ${F.phone}`, `${mode === 2 ? 'Crew' : 'Party'}: ${F.party}`, `Dates: ${F.arrival} to ${F.departure}`, mode === 1 ? `Office: ${F.office}${F.accreditation ? ' · Ref: ' + F.accreditation : ''}` : '', '', F.notes].filter(x => x !== '').join('\n');
     let lbv = { src: '', cap: '', count: '', multi: false };
-    if (S.lb && S.lb.gid != null) { const arr = D.galleries[S.lb.gid], it = arr[S.lb.i]; if (it) lbv = { src: it.src, cap: it.cap, count: arr.length > 1 ? `· ${S.lb.i + 1} / ${arr.length}` : '', multi: arr.length > 1 }; }
-    else if (S.lb && S.lb.key) lbv = { src: D.singles[S.lb.key], cap: caps[S.lb.key], count: '', multi: false };
+    if (S.lb && S.lb.gid != null) { const arr = D.galleries[S.lb.gid], it = arr[S.lb.i]; if (it) lbv = { src: it.src, srcset: sized(it.src), cap: it.cap, count: arr.length > 1 ? `· ${S.lb.i + 1} / ${arr.length}` : '', multi: arr.length > 1 }; }
+    else if (S.lb && S.lb.key) lbv = { src: D.singles[S.lb.key], srcset: sized(D.singles[S.lb.key]), cap: caps[S.lb.key], count: '', multi: false };
     return {
       wide: !narrow, narrow, placeLine: narrow ? 'Pampelonne · Saint-Tropez' : 'Pampelonne · Ramatuelle · Saint-Tropez',
       menuOpen: narrow && S.menu, menuLabel: S.menu ? 'Close' : 'Menu',
@@ -1901,7 +1918,7 @@ class Component extends DCLogic {
       levelTabs: levels.map((l, i) => ({ num: l.num, label: l.label, bg: i === S.level ? sea : 'transparent', ink: i === S.level ? paper : ink, select: () => this.setState({ level: i, img: 0 }) })),
       level: { k: L.k, t: L.t, b: L.b, f: L.f.map(([k, v]) => ({ k, v })), hasImg: !!cur, showReplace: ed && !!cur,
         thumbs: ed || limgs.length > 1 ? limgs.map((it, i) => ({ src: it.src.includes('principal-terrace-') ? 'assets/principal-terrace-320.webp' : /^assets\/view-[0-9a-f]+\.webp$/.test(it.src) ? it.src.replace('.webp', '-320.webp') : it.src, cap: it.cap, op: i === li ? 1 : 0.55, outline: i === li ? '1px solid oklch(0.52 0.12 45)' : 'none', ring: ring(lgid, i),
-          select: () => this.setState(ed ? { img: i } : { img: i, lb: { gid: lgid, i } }), dragStart: e => this.dragStart(e, lgid, i), dragOver: e => this.dragOverTile(e, lgid, i), drop: e => this.dropAt(e, lgid, i),
+          select: () => this.setState({ img: i }), dragStart: e => this.dragStart(e, lgid, i), dragOver: e => this.dragOverTile(e, lgid, i), drop: e => this.dropAt(e, lgid, i),
           del: e => { stop(e); this.remove(lgid, i); } })) : [],
         add: () => this.pick({ type: 'add', gid: lgid }), over: e => { if (ed) e.preventDefault(); }, drop: e => this.dropAt(e, lgid, null),
         open: () => { if (!ed && cur) this.setState({ lb: { gid: lgid, i: li } }); },
