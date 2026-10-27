@@ -42,9 +42,54 @@ input,select,textarea,button{font-family:inherit}
 ::placeholder{color:var(--ink-placeholder)}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
-<script src="support.js"></script>
+<script>window.__resources={"https://unpkg.com/react@18.3.1/umd/react.production.min.js": "assets/runtime-6822817c-e6b8-45c4-a57b-46001611e526.js", "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js": "assets/runtime-d49d45d7-2421-4760-bce4-e94dc5e9f9f8.js"};</script><script defer src="support.js"></script>
+<link rel="preload" as="image" href="assets/photos/hero-pool-gardens.webp" imagesrcset="assets/photos/hero-pool-gardens-320.webp 320w, assets/photos/hero-pool-gardens-640.webp 640w, assets/photos/hero-pool-gardens-960.webp 960w, assets/photos/hero-pool-gardens.webp 1672w" imagesizes="100vw">
+<style id="responsive-fixes">
+/* Phones: the whole photograph, uncropped, directly above a solid caption panel with no empty band. */
+@media(max-width:760px){
+html body :is(#top,#initial-hero){min-height:0!important;height:auto!important;display:grid!important;grid-template-rows:auto auto!important;padding-top:72px;background:oklch(0.22 0.03 235)!important}
+html body :is(#top,#initial-hero)>img{position:relative!important;inset:auto!important;grid-row:1;width:100%!important;height:auto!important;min-height:0;aspect-ratio:1672/941!important;object-fit:cover!important;object-position:center!important;align-self:start}
+html body :is(#top,#initial-hero) .hero-shade{display:none!important}
+html body :is(#top,#initial-hero) .hero-content{grid-row:2;justify-content:flex-start!important;gap:18px!important;padding:30px 24px max(36px,env(safe-area-inset-bottom))!important}
+html body .hero-metrics>div{padding-right:10px!important}
+html body .hero-metrics strong{font-size:20px!important;line-height:1.15!important;text-wrap:balance}
+html body .floor-thumbs{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px!important}
+html body .floor-thumbs>div{width:auto!important;height:auto!important;aspect-ratio:1}
+}
+/* Tablets: keep the three wellness rooms on one row and let an odd last offer card span the row. */
+@media(min-width:700px) and (max-width:1099px){
+html body .wellness-gallery{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+html body .wellness-gallery>*{height:300px!important}
+html body .offer-grid>:last-child:nth-child(odd){grid-column:1/-1}
+}
+@media(max-width:1099px){html body .offer-grid>article{min-height:0!important}html body .offer-grid>article>ul{margin-top:8px!important}}
+/* Photo viewer: fades in, the page behind it cannot be dragged, and the photo uses the whole screen. */
+.photo-viewer{background:#0c1417!important;animation:viewer-in .28s ease-out;touch-action:pinch-zoom;overscroll-behavior:contain}
+.photo-viewer>img{animation:viewer-img .35s ease-out}
+@keyframes viewer-in{from{opacity:0}to{opacity:1}}
+@keyframes viewer-img{from{opacity:0;transform:scale(.98)}to{opacity:1;transform:none}}
+@media(max-width:760px){.photo-viewer{padding:56px 0 64px!important}.photo-viewer>img{max-height:calc(100svh - 120px)!important}.photo-viewer>p{bottom:max(20px,env(safe-area-inset-bottom))!important;padding:0 24px}}
+@media(prefers-reduced-motion:reduce){.photo-viewer,.photo-viewer>img{animation:none}}
+/* Landscape phones and short screens: the hero fits in the viewport instead of a 640px minimum. */
+@media(min-width:761px) and (max-height:620px){html body #top,html body #initial-hero{min-height:100svh!important}html body :is(#top,#initial-hero) .hero-shade{height:70%!important}}
+#initial-view header{position:absolute;inset:0 0 auto;z-index:20;padding:20px 24px;color:#fffaf2;font:24px Georgia,serif}#initial-view{position:relative}
+</style>
 </head>
 <body>
+<div id="initial-view"><header>Villa Dune</header><section id="initial-hero" data-screen-label="Hero" style="position:relative;min-height:max(640px,100svh);display:flex;flex-direction:column;justify-content:flex-end;color:oklch(0.98 0.005 80);overflow:hidden;background:oklch(0.22 0.03 235)">
+  <img fetchpriority="high" decoding="async" srcset="assets/photos/hero-pool-gardens-320.webp 320w, assets/photos/hero-pool-gardens-640.webp 640w, assets/photos/hero-pool-gardens-960.webp 960w, assets/photos/hero-pool-gardens.webp 1672w" sizes="100vw" src="assets/photos/hero-pool-gardens.webp" alt="Villa Dune — residence, pool and Mediterranean gardens" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+  <div class="hero-shade" style="position:absolute;inset:auto 0 0;height:38%;background:linear-gradient(180deg,oklch(0.16 0.03 235 / 0) 0%,oklch(0.16 0.03 235 / .38) 55%,oklch(0.14 0.03 235 / .66) 100%)"></div>
+  <div class="hero-content" style="position:relative;max-width:1320px;width:100%;margin:0 auto;padding:0 clamp(18px,4vw,48px) clamp(22px,3vw,34px);display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 40px;text-shadow:0 1px 2px oklch(0.14 0.03 235 / .5)">
+    <div style="display:flex;flex-direction:column;gap:10px;flex:1 1 420px">
+      <div style="display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:oklch(0.93 0.05 60)"><span style="width:28px;height:1px;background:currentColor"></span>Saint-Tropez · Pampelonne</div>
+      <h1 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(40px,5.2vw,80px);line-height:.95;letter-spacing:-.015em;margin:0">Villa Dune</h1>
+      <p style="max-width:460px;font-size:15px;line-height:1.6;margin:0;color:oklch(0.96 0.01 80)">A gated residence above the bay.</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;text-shadow:none">
+      <a href="#residence" style="background:oklch(0.98 0.005 80);color:oklch(0.24 0.02 60);padding:15px 24px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;white-space:nowrap">Enter the residence</a>
+    </div>
+  </div>
+</section></div>
 <x-dc>
 <!-- @template name="Villa Dune site" description="Full single-page residence presentation, ported from the source site" -->
 <helmet><title>Villa Dune — Private Residence, Pampelonne</title><style>/* Residence: a compact introduction and consistent, readable photo pairs. */
@@ -126,7 +171,7 @@ input,select,textarea,button{font-family:inherit}
 </header>
 
 <section id="top" data-screen-label="Hero" onDragOver="{{ single.hero.over }}" onDrop="{{ single.hero.drop }}" style="position:relative;min-height:max(640px,100svh);display:flex;flex-direction:column;justify-content:flex-end;color:oklch(0.98 0.005 80);overflow:hidden;background:oklch(0.22 0.03 235)">
-  <img fetchpriority="high" decoding="async" src="{{ single.hero.src }}" alt="Villa Dune — residence, pool and Mediterranean gardens" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+  <img fetchpriority="high" decoding="async" src="{{ single.hero.src }}" srcset="{{ single.hero.srcset }}" sizes="100vw" alt="Villa Dune — residence, pool and Mediterranean gardens" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
   <div class="hero-shade" style="position:absolute;inset:auto 0 0;height:38%;background:linear-gradient(180deg,oklch(0.16 0.03 235 / 0) 0%,oklch(0.16 0.03 235 / .38) 55%,oklch(0.14 0.03 235 / .66) 100%)"></div>
   <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}">
     <button type="button" onClick="{{ single.hero.replace }}" style="position:absolute;top:128px;right:clamp(18px,4vw,48px);z-index:3;border:0;background:oklch(0.98 0.005 80);color:oklch(0.24 0.02 60);height:40px;padding:0 16px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;cursor:pointer">Replace hero photo</button>
@@ -173,7 +218,7 @@ input,select,textarea,button{font-family:inherit}
     <ul style="list-style:none;margin:0 0 clamp(40px,5vw,64px);padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));column-gap:72px;border-top:1px solid oklch(0.86 0.015 75)"><li style="display:grid;grid-template-columns:14px minmax(0,1fr);gap:0 12px;padding:16px 0;border-bottom:1px solid oklch(0.86 0.015 75)"><span style="width:5px;height:5px;background:oklch(0.52 0.12 45);margin-top:8px"></span><div style="display:flex;flex-direction:column;gap:4px"><div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px"><span style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:oklch(0.24 0.02 60)">5 GUEST ROOMS</span><span style="font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:oklch(0.52 0.12 45)">Garden level</span></div><span style="font-size:14px;line-height:1.65;color:oklch(0.42 0.02 60);text-wrap:pretty">Sea views and direct access to the pool.</span></div></li><li style="display:grid;grid-template-columns:14px minmax(0,1fr);gap:0 12px;padding:16px 0;border-bottom:1px solid oklch(0.86 0.015 75)"><span style="width:5px;height:5px;background:oklch(0.52 0.12 45);margin-top:8px"></span><div style="display:flex;flex-direction:column;gap:4px"><div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px"><span style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:oklch(0.24 0.02 60)">1 MASTER SUITE</span><span style="font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:oklch(0.52 0.12 45)">First floor</span></div><span style="font-size:14px;line-height:1.65;color:oklch(0.42 0.02 60);text-wrap:pretty">Exceptional views across the bay.</span></div></li><li style="display:grid;grid-template-columns:14px minmax(0,1fr);gap:0 12px;padding:16px 0;border-bottom:1px solid oklch(0.86 0.015 75)"><span style="width:5px;height:5px;background:oklch(0.52 0.12 45);margin-top:8px"></span><div style="display:flex;flex-direction:column;gap:4px"><div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px"><span style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:oklch(0.24 0.02 60)">1 CHILDREN’S ROOM</span><span style="font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:oklch(0.52 0.12 45)">Upper floor</span></div><span style="font-size:14px;line-height:1.65;color:oklch(0.42 0.02 60);text-wrap:pretty">Sleeps three children and a nanny.</span></div></li><li style="display:grid;grid-template-columns:14px minmax(0,1fr);gap:0 12px;padding:16px 0;border-bottom:1px solid oklch(0.86 0.015 75)"><span style="width:5px;height:5px;background:oklch(0.52 0.12 45);margin-top:8px"></span><div style="display:flex;flex-direction:column;gap:4px"><div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px"><span style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:oklch(0.24 0.02 60)">Staff studio</span><span style="font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:oklch(0.52 0.12 45)">Private wing</span></div><span style="font-size:14px;line-height:1.65;color:oklch(0.42 0.02 60);text-wrap:pretty">Sleeps two, with kitchenette, lounge, private terrace, laundry access and its own entrance.</span></div></li></ul><div class="residence-gallery" onDragOver="{{ gal.residence.over }}" onDrop="{{ gal.residence.drop }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px">
       <sc-for list="{{ gal.residence.items }}" as="p" hint-placeholder-count="4">
         <div class="residence-photo" draggable="{{ editing }}" onDragStart="{{ p.dragStart }}" onDragOver="{{ p.dragOver }}" onDrop="{{ p.drop }}" onDragEnd="{{ dragEnd }}" onClick="{{ p.open }}" style="position:relative;grid-column:{{ p.span }};height:{{ p.h }};overflow:hidden;background:oklch(0.93 0.015 75);cursor:{{ tileCursor }};opacity:{{ p.op }};box-shadow:{{ p.ring }}">
-          <img src="{{ p.src }}" alt="{{ p.cap }}" loading="lazy" draggable="false" style="width:100%;height:100%;object-fit:cover;pointer-events:none">
+          <img src="{{ p.src }}" srcset="{{ p.srcset }}" sizes="(max-width: 760px) 100vw, 50vw" alt="{{ p.cap }}" loading="lazy" draggable="false" style="width:100%;height:100%;object-fit:cover;pointer-events:none">
           <sc-if value="{{ viewing }}" hint-placeholder-val="{{ true }}"><span class="residence-caption">{{ p.cap }}</span></sc-if>
           <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}">
             <div style="position:absolute;top:10px;left:10px;right:10px;display:flex;justify-content:space-between;gap:8px;align-items:flex-start;flex-wrap:wrap">
@@ -218,7 +263,7 @@ input,select,textarea,button{font-family:inherit}
       <div>
         <div onClick="{{ level.open }}" style="position:relative;cursor:{{ tileCursor }};min-height:clamp(320px,40vw,580px);overflow:hidden;background:oklch(0.93 0.015 75)">
           <sc-if value="{{ level.hasImg }}" hint-placeholder-val="{{ true }}">
-            <img src="{{ levelImg.src }}" alt="{{ levelImg.cap }}" decoding="async" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:{{ levelImg.fit }}">
+            <img src="{{ levelImg.src }}" srcset="{{ levelImg.srcset }}" sizes="(max-width: 760px) 100vw, (max-width: 1400px) 50vw, 660px" alt="{{ levelImg.cap }}" decoding="async" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:{{ levelImg.fit }}">
             <span style="position:absolute;left:16px;bottom:14px;color:#fff;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;background:oklch(0.2 0.03 235 / .45);padding:6px 9px">{{ levelImg.cap }}</span>
           </sc-if>
           <sc-if value="{{ level.showReplace }}" hint-placeholder-val="{{ false }}">
@@ -265,7 +310,7 @@ input,select,textarea,button{font-family:inherit}
       <div class="wellness-gallery" onDragOver="{{ gal.wellness.over }}" onDrop="{{ gal.wellness.drop }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px">
         <sc-for list="{{ gal.wellness.items }}" as="p" hint-placeholder-count="5">
           <div draggable="{{ editing }}" onDragStart="{{ p.dragStart }}" onDragOver="{{ p.dragOver }}" onDrop="{{ p.drop }}" onDragEnd="{{ dragEnd }}" onClick="{{ p.open }}" style="position:relative;grid-column:{{ p.span }};height:{{ p.h }};overflow:hidden;background:oklch(0.93 0.015 75);cursor:{{ tileCursor }};opacity:{{ p.op }};box-shadow:{{ p.ring }}">
-            <img src="{{ p.src }}" alt="{{ p.cap }}" loading="lazy" draggable="false" style="width:100%;height:100%;object-fit:cover;pointer-events:none">
+            <img src="{{ p.src }}" srcset="{{ p.srcset }}" sizes="(max-width: 760px) 100vw, 50vw" alt="{{ p.cap }}" loading="lazy" draggable="false" style="width:100%;height:100%;object-fit:cover;pointer-events:none">
             <sc-if value="{{ viewing }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;left:16px;bottom:14px;color:#fff;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;background:oklch(0.2 0.03 235 / .45);padding:6px 9px">{{ p.cap }}</span></sc-if>
             <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}">
               <div style="position:absolute;top:10px;left:10px;right:10px;display:flex;justify-content:space-between;gap:8px;align-items:flex-start;flex-wrap:wrap">
@@ -301,7 +346,7 @@ input,select,textarea,button{font-family:inherit}
     <div class="outdoors-gallery" onDragOver="{{ gal.outdoors.over }}" onDrop="{{ gal.outdoors.drop }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:12px">
       <sc-for list="{{ gal.outdoors.items }}" as="p" hint-placeholder-count="4">
         <div class="outdoors-photo" draggable="{{ editing }}" onDragStart="{{ p.dragStart }}" onDragOver="{{ p.dragOver }}" onDrop="{{ p.drop }}" onDragEnd="{{ dragEnd }}" onClick="{{ p.open }}" style="position:relative;grid-column:{{ p.span }};height:{{ p.h }};overflow:hidden;background:oklch(0.93 0.015 75);cursor:{{ tileCursor }};opacity:{{ p.op }};box-shadow:{{ p.ring }}">
-          <img src="{{ p.src }}" alt="{{ p.cap }}" loading="lazy" draggable="false" style="width:100%;height:100%;object-fit:cover;pointer-events:none">
+          <img src="{{ p.src }}" srcset="{{ p.srcset }}" sizes="(max-width: 760px) 100vw, 50vw" alt="{{ p.cap }}" loading="lazy" draggable="false" style="width:100%;height:100%;object-fit:cover;pointer-events:none">
           <sc-if value="{{ viewing }}" hint-placeholder-val="{{ true }}"><span class="outdoors-caption">{{ p.cap }}</span></sc-if>
           <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}">
             <div style="position:absolute;top:10px;left:10px;right:10px;display:flex;justify-content:space-between;gap:8px;align-items:flex-start;flex-wrap:wrap">
@@ -336,7 +381,7 @@ input,select,textarea,button{font-family:inherit}
     <div onDragOver="{{ gal.dining.over }}" onDrop="{{ gal.dining.drop }}" style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px">
       <sc-for list="{{ gal.dining.items }}" as="p" hint-placeholder-count="4">
         <div draggable="{{ editing }}" onDragStart="{{ p.dragStart }}" onDragOver="{{ p.dragOver }}" onDrop="{{ p.drop }}" onDragEnd="{{ dragEnd }}" onClick="{{ p.open }}" style="position:relative;grid-column:{{ p.span }};height:{{ p.h }};overflow:hidden;background:oklch(0.93 0.015 75);cursor:{{ tileCursor }};opacity:{{ p.op }};box-shadow:{{ p.ring }}">
-          <img src="{{ p.src }}" alt="{{ p.cap }}" loading="lazy" draggable="false" style="width:100%;height:100%;object-fit:cover;pointer-events:none">
+          <img src="{{ p.src }}" srcset="{{ p.srcset }}" sizes="(max-width: 760px) 100vw, 50vw" alt="{{ p.cap }}" loading="lazy" draggable="false" style="width:100%;height:100%;object-fit:cover;pointer-events:none">
           <sc-if value="{{ viewing }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;left:16px;bottom:14px;color:#fff;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;background:oklch(0.2 0.03 235 / .45);padding:6px 9px">{{ p.cap }}</span></sc-if>
           <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}">
             <div style="position:absolute;top:10px;left:10px;right:10px;display:flex;justify-content:space-between;gap:8px;align-items:flex-start;flex-wrap:wrap">
@@ -365,13 +410,13 @@ input,select,textarea,button{font-family:inherit}
       <p style="font-size:15px;line-height:1.8;color:oklch(0.42 0.02 60);margin:0;max-width:540px">One bar sits beside the pool and outdoor kitchen; the other turns toward the bay for drinks in the last light.</p>
     </div>
     <div onClick="{{ single.poolbar.open }}" onDragOver="{{ single.poolbar.over }}" onDrop="{{ single.poolbar.drop }}" style="position:relative;cursor:{{ tileCursor }};width:100%;height:clamp(280px,38vw,480px);overflow:hidden;background:oklch(0.93 0.015 75)">
-      <img src="{{ single.poolbar.src }}" decoding="async" alt="The white marble pool bar with barbecue grill" loading="lazy" style="width:100%;height:100%;object-fit:cover">
+      <img src="{{ single.poolbar.src }}" srcset="{{ single.poolbar.srcset }}" sizes="(max-width: 760px) 100vw, 1240px" decoding="async" alt="The white marble pool bar with barbecue grill" loading="lazy" style="width:100%;height:100%;object-fit:cover">
       <span style="position:absolute;left:16px;bottom:14px;color:#fff;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;background:oklch(0.2 0.03 235 / .45);padding:6px 9px">The pool bar, first floor</span>
       <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ single.poolbar.replace }}" style="position:absolute;top:12px;right:12px;border:0;background:oklch(0.98 0.005 80);color:oklch(0.24 0.02 60);height:34px;padding:0 12px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;cursor:pointer">Replace photo</button></sc-if>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));margin-top:12px;background:oklch(0.3 0.045 235);color:oklch(0.97 0.008 80)">
       <div onClick="{{ single.bbq.open }}" onDragOver="{{ single.bbq.over }}" onDrop="{{ single.bbq.drop }}" style="position:relative;cursor:{{ tileCursor }};min-height:440px;overflow:hidden;background:oklch(0.25 0.03 235)">
-        <img src="{{ single.bbq.src }}" decoding="async" alt="The green marble bar on the second floor" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <img src="{{ single.bbq.src }}" srcset="{{ single.bbq.srcset }}" sizes="(max-width: 760px) 100vw, 50vw" decoding="async" alt="The green marble bar on the second floor" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
         <span style="position:absolute;left:16px;bottom:14px;color:#fff;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;background:oklch(0.2 0.03 235 / .45);padding:6px 9px">The green marble bar, second floor</span>
         <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ single.bbq.replace }}" style="position:absolute;top:12px;right:12px;border:0;background:oklch(0.98 0.005 80);color:oklch(0.24 0.02 60);height:34px;padding:0 12px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;cursor:pointer">Replace photo</button></sc-if>
       </div>
@@ -395,7 +440,7 @@ input,select,textarea,button{font-family:inherit}
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:12px">
       <article onDragOver="{{ single.celebrate.over }}" onDrop="{{ single.celebrate.drop }}" style="position:relative;min-height:560px;overflow:hidden;color:oklch(0.98 0.005 80);background:oklch(0.22 0.03 235)">
-        <img src="{{ single.celebrate.src }}" decoding="async" alt="The pool terrace set for a private celebration" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <img src="{{ single.celebrate.src }}" srcset="{{ single.celebrate.srcset }}" sizes="(max-width: 760px) 100vw, 50vw" decoding="async" alt="The pool terrace set for a private celebration" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,oklch(0.16 0.03 235 / .55) 58%,oklch(0.16 0.03 235 / .92) 100%)"></div>
         <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ single.celebrate.replace }}" style="position:absolute;z-index:2;top:12px;right:12px;border:0;background:oklch(0.98 0.005 80);color:oklch(0.24 0.02 60);height:34px;padding:0 12px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;cursor:pointer">Replace photo</button></sc-if>
         <div style="position:absolute;left:30px;right:30px;bottom:30px">
@@ -405,7 +450,7 @@ input,select,textarea,button{font-family:inherit}
         </div>
       </article>
       <article onDragOver="{{ single.film.over }}" onDrop="{{ single.film.drop }}" style="position:relative;min-height:560px;overflow:hidden;color:oklch(0.98 0.005 80);background:oklch(0.22 0.03 235)">
-        <img src="{{ single.film.src }}" decoding="async" alt="A creative production on the sea-view terrace" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <img src="{{ single.film.src }}" srcset="{{ single.film.srcset }}" sizes="(max-width: 760px) 100vw, 50vw" decoding="async" alt="A creative production on the sea-view terrace" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,oklch(0.16 0.03 235 / .55) 58%,oklch(0.16 0.03 235 / .92) 100%)"></div>
         <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ single.film.replace }}" style="position:absolute;z-index:2;top:12px;right:12px;border:0;background:oklch(0.98 0.005 80);color:oklch(0.24 0.02 60);height:34px;padding:0 12px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;cursor:pointer">Replace photo</button></sc-if>
         <div style="position:absolute;left:30px;right:30px;bottom:30px">
@@ -418,7 +463,7 @@ input,select,textarea,button{font-family:inherit}
     <div onDragOver="{{ gal.parties.over }}" onDrop="{{ gal.parties.drop }}" style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px;margin-top:12px">
       <sc-for list="{{ gal.parties.items }}" as="p" hint-placeholder-count="5">
         <div draggable="{{ editing }}" onDragStart="{{ p.dragStart }}" onDragOver="{{ p.dragOver }}" onDrop="{{ p.drop }}" onDragEnd="{{ dragEnd }}" onClick="{{ p.open }}" style="position:relative;grid-column:{{ p.span }};height:{{ p.h }};overflow:hidden;background:oklch(0.93 0.015 75);cursor:{{ tileCursor }};opacity:{{ p.op }};box-shadow:{{ p.ring }}">
-          <img src="{{ p.src }}" alt="{{ p.cap }}" loading="lazy" draggable="false" style="width:100%;height:100%;object-fit:cover;pointer-events:none">
+          <img src="{{ p.src }}" srcset="{{ p.srcset }}" sizes="(max-width: 760px) 100vw, 50vw" alt="{{ p.cap }}" loading="lazy" draggable="false" style="width:100%;height:100%;object-fit:cover;pointer-events:none">
           <sc-if value="{{ viewing }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;left:16px;bottom:14px;color:#fff;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;background:oklch(0.2 0.03 235 / .45);padding:6px 9px">{{ p.cap }}</span></sc-if>
           <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}">
             <div style="position:absolute;top:10px;left:10px;right:10px;display:flex;justify-content:space-between;gap:8px;align-items:flex-start;flex-wrap:wrap">
@@ -452,7 +497,7 @@ input,select,textarea,button{font-family:inherit}
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:12px">
       <article onDragOver="{{ single.village.over }}" onDrop="{{ single.village.drop }}" style="position:relative;min-height:520px;overflow:hidden;color:oklch(0.98 0.005 80);background:oklch(0.22 0.03 235)">
-        <img src="{{ single.village.src }}" decoding="async" alt="Hilltop village of Ramatuelle above green countryside" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <img src="{{ single.village.src }}" srcset="{{ single.village.srcset }}" sizes="(max-width: 760px) 100vw, 50vw" decoding="async" alt="Hilltop village of Ramatuelle above green countryside" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,oklch(0.16 0.03 235 / .55) 58%,oklch(0.16 0.03 235 / .9) 100%)"></div>
         <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ single.village.replace }}" style="position:absolute;z-index:2;top:12px;right:12px;border:0;background:oklch(0.98 0.005 80);color:oklch(0.24 0.02 60);height:34px;padding:0 12px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;cursor:pointer">Replace photo</button></sc-if>
         <div style="position:absolute;left:30px;right:30px;bottom:30px">
@@ -462,7 +507,7 @@ input,select,textarea,button{font-family:inherit}
         </div>
       </article>
       <article onDragOver="{{ single.club.over }}" onDrop="{{ single.club.drop }}" style="position:relative;min-height:520px;overflow:hidden;color:oklch(0.98 0.005 80);background:oklch(0.22 0.03 235)">
-        <img src="{{ single.club.src }}" decoding="async" alt="The rustic entrance sign at Le Club 55 on Pampelonne Beach" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <img src="{{ single.club.src }}" srcset="{{ single.club.srcset }}" sizes="(max-width: 760px) 100vw, 50vw" decoding="async" alt="The rustic entrance sign at Le Club 55 on Pampelonne Beach" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,oklch(0.16 0.03 235 / .55) 58%,oklch(0.16 0.03 235 / .9) 100%)"></div>
         <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ single.club.replace }}" style="position:absolute;z-index:2;top:12px;right:12px;border:0;background:oklch(0.98 0.005 80);color:oklch(0.24 0.02 60);height:34px;padding:0 12px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;cursor:pointer">Replace photo</button></sc-if>
         <div style="position:absolute;left:30px;right:30px;bottom:30px">
@@ -563,7 +608,7 @@ input,select,textarea,button{font-family:inherit}
 
 <sc-if value="{{ lbOpen }}" hint-placeholder-val="{{ false }}">
   <div class="photo-viewer" role="dialog" aria-modal="true" aria-label="{{ lb.cap }}" onClick="{{ closeLb }}" style="position:fixed;inset:0;z-index:50;background:oklch(0.14 0.02 235 / .96);display:flex;align-items:center;justify-content:center;padding:clamp(16px,5vw,64px)">
-    <img src="{{ lb.src }}" alt="{{ lb.cap }}" decoding="async" onClick="{{ stop }}" style="max-width:100%;max-height:84vh;object-fit:contain">
+    <img src="{{ lb.src }}" srcset="{{ lb.srcset }}" sizes="100vw" alt="{{ lb.cap }}" decoding="async" onClick="{{ stop }}" style="max-width:100%;max-height:84vh;object-fit:contain">
     <p style="position:absolute;bottom:18px;left:0;right:0;text-align:center;margin:0;color:oklch(0.9 0.01 230);font-size:11px;letter-spacing:.2em;text-transform:uppercase">{{ lb.cap }} {{ lb.count }}</p>
     <sc-if value="{{ lb.multi }}" hint-placeholder-val="{{ false }}">
       <button type="button" onClick="{{ lbPrev }}" aria-label="Previous photo" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);border:0;background:transparent;color:#fff;font-family:'Cormorant Garamond',serif;font-size:48px;min-width:56px;min-height:56px;cursor:pointer">‹</button>
@@ -584,7 +629,7 @@ class Component extends DCLogic {
         lv1: g([['assets/photos/garden-ensuite-sitting.webp', 'Garden en-suite with sitting area'], ['assets/photos/garden-ensuite-sea.webp', 'Garden en-suite with sea view'], ['assets/photos/garden-suite-lawn.webp', 'Garden suite, doors to the lawn'], ['assets/photos/poolside-kitchen.webp', 'The poolside kitchen']]),
         lv2: g([['assets/photos/childrens-floor.webp', 'The children’s floor']]),
         wellness: g([['assets/photos/gym-arched-mirrors.webp', 'The gym and its arched mirrors'], ['assets/photos/spa-treatment-room.webp', 'The spa treatment room'], ['assets/photos/hammam.webp', 'The hammam steam room']]),
-        outdoors: g([['assets/photos/pool-garden.png', 'The pool and gardens'], ['assets/photos/pool-pergola.webp', 'The pool pergola'], ['assets/photos/pool-cactus-garden.webp', 'The pool and cactus garden'], ['assets/photos/gardens-to-sea.webp', 'Gardens running down to the sea'], ['assets/photos/garden-pavilion.webp', 'The garden pavilion']]),
+        outdoors: g([['assets/photos/pool-garden.webp', 'The pool and gardens'], ['assets/photos/pool-pergola.webp', 'The pool pergola'], ['assets/photos/pool-cactus-garden.webp', 'The pool and cactus garden'], ['assets/photos/gardens-to-sea.webp', 'Gardens running down to the sea'], ['assets/photos/garden-pavilion.webp', 'The garden pavilion']]),
         dining: g([['assets/photos/garden-terrace-dinner.webp', 'Dinner on the garden terrace'], ['assets/photos/pool-lunch.webp', 'Lunch by the pool'], ['assets/photos/sea-view-dining.webp', 'Dining on the sea-view terrace'], ['assets/photos/pergola-table.webp', 'The pergola table']]),
         parties: g([['assets/photos/filming-golden-hour.webp', 'Filming at golden hour'], ['assets/photos/terrace-after-dark.webp', 'The terrace after dark'], ['assets/photos/bar-facing-sea.webp', 'The bar, facing the sea'], ['assets/photos/on-location.webp', 'On location']])
       },
@@ -761,7 +806,7 @@ class Component extends DCLogic {
       wellness: () => ['auto', '360px'], dining: i => S.w < 760 ? ['1/-1', '300px'] : [['span 7', 'span 5', 'span 5', 'span 7'][i % 4], 'clamp(300px,34vw,460px)'], parties: (i, n) => S.w < 760 ? ['1/-1', '280px'] : (() => { const r = (n || 5) % 3, big = r === 2 ? 2 : r === 1 ? 4 : 0; if (i < big) return [r === 2 ? ['span 7', 'span 5'][i] : 'span 6', 'clamp(300px,32vw,440px)']; return ['span 4', '320px']; })()
     };
     // Bundled photographs ship with 320/640/960/1200 px copies so phones never download the full-size file.
-    const sized = () => '';
+    const sized = src => { const w = {"assets/photos/bar-facing-sea.webp":960,"assets/photos/celebration-terrace.webp":960,"assets/photos/childrens-floor.webp":960,"assets/photos/filming-golden-hour.webp":960,"assets/photos/gallery-hall-art.webp":960,"assets/photos/garden-ensuite-sea.webp":960,"assets/photos/garden-ensuite-sitting.webp":960,"assets/photos/garden-pavilion.webp":960,"assets/photos/garden-suite-lawn.webp":960,"assets/photos/garden-suite-pool.webp":960,"assets/photos/garden-terrace-dinner.webp":960,"assets/photos/gardens-to-sea.webp":960,"assets/photos/grand-salon.webp":960,"assets/photos/green-marble-bar.webp":960,"assets/photos/gym-arched-mirrors.webp":960,"assets/photos/hammam.webp":960,"assets/photos/hero-pool-gardens.webp":1672,"assets/photos/le-club-55.webp":960,"assets/photos/living-room-terrace.webp":960,"assets/photos/living-room.webp":960,"assets/photos/master-bedroom-terrace.webp":960,"assets/photos/on-location.webp":960,"assets/photos/pergola-table.webp":960,"assets/photos/pool-bar-white-marble.webp":960,"assets/photos/pool-cactus-garden.webp":960,"assets/photos/pool-garden.webp":1448,"assets/photos/pool-lunch.webp":960,"assets/photos/pool-pergola.webp":960,"assets/photos/poolside-kitchen.webp":960,"assets/photos/principal-terrace.webp":960,"assets/photos/production-terrace.webp":960,"assets/photos/ramatuelle-village.webp":960,"assets/photos/salon-sea.webp":960,"assets/photos/sea-view-dining.webp":960,"assets/photos/spa-treatment-room.webp":960,"assets/photos/terrace-after-dark.webp":960}[src]; if (!w) return ''; return [320, 640, 960].filter(x => x < w).map(x => src.replace('.webp', '-' + x + '.webp') + ' ' + x + 'w').concat(src + ' ' + w + 'w').join(', '); };
     const ring = (gid, i) => S.over && S.over.gid === gid && S.over.i === i ? 'inset 0 0 0 3px oklch(0.62 0.12 45)' : 'none';
     const dim = (gid, i) => S.drag && S.drag.gid === gid && S.drag.i === i ? 0.35 : 1;
     const mkGal = gid => ({
@@ -828,7 +873,7 @@ class Component extends DCLogic {
       single,
       levelTabs: levels.map((l, i) => ({ num: l.num, label: l.label, line: i === S.level ? 'oklch(0.52 0.12 45)' : 'transparent', ink: i === S.level ? ink : 'oklch(0.5 0.02 60)', select: () => this.setState({ level: i, img: 0 }) })),
       level: { k: L.k, t: L.t, b: L.b, f: L.f.map(([k, v]) => ({ k, v })), hasImg: !!cur, showReplace: ed && !!cur,
-        thumbs: ed || limgs.length > 1 ? limgs.map((it, i) => ({ src: it.src.includes('principal-terrace-') ? 'assets/principal-terrace-320.webp' : /^assets\/view-[0-9a-f]+\.webp$/.test(it.src) ? it.src.replace('.webp', '-320.webp') : it.src, cap: it.cap, op: i === li ? 1 : 0.55, outline: i === li ? '1px solid oklch(0.52 0.12 45)' : 'none', ring: ring(lgid, i),
+        thumbs: ed || limgs.length > 1 ? limgs.map((it, i) => ({ src: it.src.includes('principal-terrace-') ? 'assets/principal-terrace-320.webp' : sized(it.src) ? it.src.replace('.webp', '-320.webp') : it.src, cap: it.cap, op: i === li ? 1 : 0.55, outline: i === li ? '1px solid oklch(0.52 0.12 45)' : 'none', ring: ring(lgid, i),
           select: () => this.setState({ img: i }), dragStart: e => this.dragStart(e, lgid, i), dragOver: e => this.dragOverTile(e, lgid, i), drop: e => this.dropAt(e, lgid, i),
           del: e => { stop(e); this.remove(lgid, i); } })) : [],
         add: () => this.pick({ type: 'add', gid: lgid }), over: e => { if (ed) e.preventDefault(); }, drop: e => this.dropAt(e, lgid, null),
@@ -882,5 +927,7 @@ class Component extends DCLogic {
   }
 }
 </script>
+<script src="assets/languages.js"></script>
+<script>(()=>{const ready=()=>{if(document.querySelector('#dc-root #top')){document.getElementById('initial-view')?.remove();observer.disconnect();}};const observer=new MutationObserver(ready);observer.observe(document.body,{childList:true,subtree:true});ready();})();</script><noscript><p>Please enable JavaScript for the complete residence tour.</p></noscript>
 </body>
 </html>
