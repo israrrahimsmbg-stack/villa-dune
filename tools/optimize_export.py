@@ -43,6 +43,7 @@ html body .floor-thumbs>div{width:auto!important;height:auto!important;aspect-ra
 html body .wellness-gallery{grid-template-columns:repeat(3,minmax(0,1fr))!important}
 html body .wellness-gallery>*{height:300px!important}
 html body .offer-grid>:last-child:nth-child(odd){grid-column:1/-1}
+html body .surroundings-grid>:last-child:nth-child(odd){grid-column:1/-1}
 }
 @media(max-width:1099px){html body .offer-grid>article{min-height:0!important}html body .offer-grid>article>ul{margin-top:8px!important}}
 /* Photo viewer: fades in, the page behind it cannot be dragged, and the photo uses the whole screen. */
