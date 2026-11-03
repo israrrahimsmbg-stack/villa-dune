@@ -42,9 +42,23 @@ input,select,textarea,button{font-family:inherit}
 ::placeholder{color:var(--ink-placeholder)}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
-<script src="support.js"></script>
+<script>window.__resources={"https://unpkg.com/react@18.3.1/umd/react.production.min.js": "assets/runtime-6822817c-e6b8-45c4-a57b-46001611e526.js", "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js": "assets/runtime-d49d45d7-2421-4760-bce4-e94dc5e9f9f8.js"};</script><script defer src="support.js"></script>
 </head>
 <body>
+<div id="initial-view"><header>Villa Dune</header><section id="initial-hero" data-screen-label="Hero" style="position:relative;min-height:max(640px,100svh);display:flex;flex-direction:column;justify-content:flex-end;color:oklch(0.98 0.005 80);overflow:hidden;background:oklch(0.22 0.03 235)">
+  <img fetchpriority="high" decoding="async" srcset="assets/photos/hero-pool-gardens-320.webp 320w, assets/photos/hero-pool-gardens-640.webp 640w, assets/photos/hero-pool-gardens-960.webp 960w, assets/photos/hero-pool-gardens.webp 1672w" sizes="100vw" src="assets/photos/hero-pool-gardens.webp" alt="Villa Dune — residence, pool and Mediterranean gardens" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+  <div class="hero-shade" style="position:absolute;inset:auto 0 0;height:38%;background:linear-gradient(180deg,oklch(0.16 0.03 235 / 0) 0%,oklch(0.16 0.03 235 / .38) 55%,oklch(0.14 0.03 235 / .66) 100%)"></div>
+  <div class="hero-content" style="position:relative;max-width:1320px;width:100%;margin:0 auto;padding:0 clamp(18px,4vw,48px) clamp(22px,3vw,34px);display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 40px;text-shadow:0 1px 2px oklch(0.14 0.03 235 / .5)">
+    <div style="display:flex;flex-direction:column;gap:10px;flex:1 1 420px">
+      <div style="display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:oklch(0.93 0.05 60)"><span style="width:28px;height:1px;background:currentColor"></span>Saint-Tropez · Pampelonne</div>
+      <h1 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(40px,5.2vw,80px);line-height:.95;letter-spacing:-.015em;margin:0">Villa Dune</h1>
+      <p style="max-width:460px;font-size:15px;line-height:1.6;margin:0;color:oklch(0.96 0.01 80)">A gated residence above the bay.</p>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;text-shadow:none">
+      <a href="#residence" style="background:oklch(0.98 0.005 80);color:oklch(0.24 0.02 60);padding:15px 24px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;white-space:nowrap">Enter the residence</a>
+    </div>
+  </div>
+</section></div>
 <x-dc>
 <!-- @template name="Villa Dune site" description="Full single-page residence presentation, ported from the source site" -->
 <helmet><title>Villa Dune — Private Residence, Pampelonne</title><style id="responsive-fixes">
@@ -61,6 +75,8 @@ html body .floor-thumbs>div{width:auto!important;height:auto!important;aspect-ra
 }
 /* Tablets: keep the three wellness rooms on one row and let an odd last offer card span the row. */
 @media(min-width:700px) and (max-width:1099px){
+html body .wellness-gallery{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+html body .wellness-gallery>*{height:300px!important}
 html body .offer-grid>:last-child:nth-child(odd){grid-column:1/-1}
 html body .surroundings-grid>:last-child:nth-child(odd){grid-column:1/-1}
 }
@@ -74,6 +90,7 @@ html body .surroundings-grid>:last-child:nth-child(odd){grid-column:1/-1}
 @media(prefers-reduced-motion:reduce){.photo-viewer,.photo-viewer>img{animation:none}}
 /* Landscape phones and short screens: the hero fits in the viewport instead of a 640px minimum. */
 @media(min-width:761px) and (max-height:620px){html body #top,html body #initial-hero{min-height:100svh!important}html body :is(#top,#initial-hero) .hero-shade{height:70%!important}}
+#initial-view header{position:absolute;inset:0 0 auto;z-index:20;padding:20px 24px;color:#fffaf2;font:24px Georgia,serif}#initial-view{position:relative}
 </style><title>Villa Dune — Private Residence, Pampelonne</title><style>/* Residence: a compact introduction and consistent, readable photo pairs. */
 .residence-redesign{scroll-margin-top:88px;padding-top:72px!important;padding-bottom:72px!important}
 .residence-intro{display:grid;grid-template-columns:1.1fr 1fr;gap:24px 64px;align-items:end;margin-bottom:32px}
@@ -818,7 +835,7 @@ class Component extends DCLogic {
       wellness: () => ['auto', '360px'], dining: i => S.w < 760 ? ['1/-1', '300px'] : [['span 7', 'span 5', 'span 5', 'span 7'][i % 4], 'clamp(300px,34vw,460px)'], parties: (i, n) => S.w < 760 ? ['1/-1', '280px'] : (() => { const r = (n || 5) % 3, big = r === 2 ? 2 : r === 1 ? 4 : 0; if (i < big) return [r === 2 ? ['span 7', 'span 5'][i] : 'span 6', 'clamp(300px,32vw,440px)']; return ['span 4', '320px']; })()
     };
     // Bundled photographs ship with 320/640/960/1200 px copies so phones never download the full-size file.
-    const sized = src => '';
+    const sized = src => { const w = {"assets/photos/bar-facing-sea.webp":960,"assets/photos/celebration-terrace.webp":960,"assets/photos/childrens-floor.webp":960,"assets/photos/filming-golden-hour.webp":960,"assets/photos/gallery-hall-art.webp":960,"assets/photos/garden-ensuite-pool.webp":1448,"assets/photos/garden-ensuite-sea.webp":960,"assets/photos/garden-ensuite-sitting.webp":960,"assets/photos/garden-pavilion.webp":960,"assets/photos/garden-suite-lawn.webp":960,"assets/photos/garden-suite-pool.webp":960,"assets/photos/garden-terrace-dinner.webp":960,"assets/photos/gardens-to-sea.webp":960,"assets/photos/grand-salon.webp":960,"assets/photos/green-marble-bar.webp":960,"assets/photos/gym-arched-mirrors.webp":960,"assets/photos/hammam.webp":960,"assets/photos/hero-pool-gardens.webp":1672,"assets/photos/le-club-55.webp":960,"assets/photos/living-room-terrace.webp":960,"assets/photos/living-room.webp":960,"assets/photos/master-bedroom-terrace.webp":960,"assets/photos/on-location.webp":960,"assets/photos/pergola-table.webp":960,"assets/photos/pool-bar-white-marble.webp":960,"assets/photos/pool-cactus-garden-user.webp":960,"assets/photos/pool-cactus-garden.webp":960,"assets/photos/pool-garden.webp":1448,"assets/photos/pool-lunch.webp":960,"assets/photos/pool-pergola.webp":960,"assets/photos/poolside-kitchen.webp":960,"assets/photos/principal-terrace.webp":960,"assets/photos/production-terrace.webp":960,"assets/photos/ramatuelle-village.webp":960,"assets/photos/saint-tropez-port.webp":1600,"assets/photos/salon-sea.webp":960,"assets/photos/sea-view-dining.webp":960,"assets/photos/spa-treatment-room.webp":960,"assets/photos/terrace-after-dark.webp":960}[src]; if (!w) return ''; return [320, 640, 960].filter(x => x < w).map(x => src.replace('.webp', '-' + x + '.webp') + ' ' + x + 'w').concat(src + ' ' + w + 'w').join(', '); };
     const ring = (gid, i) => S.over && S.over.gid === gid && S.over.i === i ? 'inset 0 0 0 3px oklch(0.62 0.12 45)' : 'none';
     const dim = (gid, i) => S.drag && S.drag.gid === gid && S.drag.i === i ? 0.35 : 1;
     const mkGal = gid => ({
@@ -939,5 +956,7 @@ class Component extends DCLogic {
 }
 </script>
 <script src="./languages.js"></script>
+<script src="assets/languages.js"></script>
+<script>(()=>{const ready=()=>{if(document.querySelector('#dc-root #top')){document.getElementById('initial-view')?.remove();observer.disconnect();}};const observer=new MutationObserver(ready);observer.observe(document.body,{childList:true,subtree:true});ready();})();</script><noscript><p>Please enable JavaScript for the complete residence tour.</p></noscript>
 </body>
 </html>
