@@ -104,7 +104,7 @@
   const style = document.createElement('style');
   style.textContent = `
     .language-control{flex:0 0 auto;display:flex;align-items:center}
-    .language-control select{font:500 12px/1.4 Jost,Arial,sans-serif;color:inherit;background:transparent;border:1px solid currentColor;border-radius:0;padding:10px 6px;min-height:44px;max-width:110px;cursor:pointer}
+    .language-control select{-webkit-appearance:none;appearance:none;font:500 11px/1.4 Jost,Arial,sans-serif;letter-spacing:.06em;color:inherit;background:transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23999' stroke-width='1.2'/%3E%3C/svg%3E") no-repeat right 10px center;border:1px solid color-mix(in srgb,currentColor 35%,transparent);border-radius:999px;padding:8px 28px 8px 14px;min-height:40px;max-width:140px;cursor:pointer;transition:border-color .25s}.language-control select:hover,.language-control select:focus-visible{border-color:currentColor;outline:none}.language-control select option{color:#222;text-transform:none}
     .language-control option{background:#faf8f3;color:#292c28}
     .language-control select:focus-visible{outline:2px solid #b7855a;outline-offset:4px}
     html[data-locale=ar] body{font-family:Tahoma,Arial,sans-serif!important}

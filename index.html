@@ -81,13 +81,26 @@ html body .offer-grid>:last-child:nth-child(odd){grid-column:1/-1}
 html body .surroundings-grid>:last-child:nth-child(odd){grid-column:1/-1}
 }
 @media(max-width:1099px){html body .offer-grid>article{min-height:0!important}html body .offer-grid>article>ul{margin-top:8px!important}}
-/* Photo viewer: fades in, the page behind it cannot be dragged, and the photo uses the whole screen. */
-.photo-viewer{background:#0c1417!important;animation:viewer-in .28s ease-out;touch-action:pinch-zoom;overscroll-behavior:contain}
-.photo-viewer>img{animation:viewer-img .35s ease-out}
+html{scroll-behavior:smooth}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media(max-width:760px){html body #dc-root :is(p,span,div,a,small)[style*="font-size: 10px"],html body #dc-root :is(p,span,div,a,small)[style*="font-size:10px"],html body #dc-root :is(p,span,div,a,small)[style*="font-size: 10.5px"]{font-size:11px!important}}
+html body a[href*="google.com/maps"]{display:inline-block;padding:12px 0 6px!important}
+[role=button][style*="cursor"] img,.wellness-gallery img{transition:transform .9s cubic-bezier(.22,.61,.36,1)}@media(hover:hover){.wellness-gallery>div:hover img{transform:scale(1.03)}}
+/* Photo viewer: soft fade in and out, the photo appears only once loaded, page behind stays still. */
+html:has(.photo-viewer:not(.closing)){overflow:hidden}
+.photo-viewer{background:rgba(10,16,18,.96)!important;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);animation:viewer-in .4s cubic-bezier(.22,.61,.36,1) both;touch-action:pinch-zoom;overscroll-behavior:contain}
+.photo-viewer.closing{animation:viewer-out .32s cubic-bezier(.4,0,.2,1) both;pointer-events:none}
+.photo-viewer>img{opacity:0;transform:scale(.985);transition:opacity .5s ease,transform .7s cubic-bezier(.22,.61,.36,1);box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.photo-viewer>img.ready{opacity:1;transform:none}
+.photo-viewer.closing>img{transform:scale(.985)}
+.photo-viewer>p{font-family:'Cormorant Garamond',serif!important;font-size:15px!important;letter-spacing:.08em!important;text-transform:none!important;font-style:italic;color:rgba(255,255,255,.82)!important}
+.photo-viewer button{display:flex;align-items:center;justify-content:center;border-radius:50%!important;background:rgba(255,255,255,.08)!important;border:1px solid rgba(255,255,255,.18)!important;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);width:48px;height:48px;min-width:48px!important;min-height:48px!important;padding:0!important;line-height:1!important;font-size:28px!important;font-weight:300;transition:background .25s,border-color .25s}
+.photo-viewer button:hover,.photo-viewer button:focus-visible{background:rgba(255,255,255,.2)!important;border-color:rgba(255,255,255,.5)!important;outline:none}
+.photo-viewer button[aria-label="Close"]{top:max(14px,env(safe-area-inset-top))!important;font-size:24px!important}
+.photo-viewer button[aria-label^="Previous"]{left:max(16px,2vw)!important}.photo-viewer button[aria-label^="Next"]{right:max(16px,2vw)!important}
 @keyframes viewer-in{from{opacity:0}to{opacity:1}}
-@keyframes viewer-img{from{opacity:0;transform:scale(.98)}to{opacity:1;transform:none}}
-@media(max-width:760px){.photo-viewer{padding:56px 0 64px!important}.photo-viewer>img{max-height:calc(100svh - 120px)!important}.photo-viewer>p{bottom:max(20px,env(safe-area-inset-bottom))!important;padding:0 24px}}
-@media(prefers-reduced-motion:reduce){.photo-viewer,.photo-viewer>img{animation:none}}
+@keyframes viewer-out{from{opacity:1}to{opacity:0}}
+@media(max-width:760px){.photo-viewer{padding:64px 0 72px!important}.photo-viewer>img{max-height:calc(100svh - 140px)!important;box-shadow:none}.photo-viewer>p{bottom:max(22px,env(safe-area-inset-bottom))!important;padding:0 72px;line-height:1.3}.photo-viewer button[aria-label^="Previous"],.photo-viewer button[aria-label^="Next"]{top:auto!important;bottom:max(12px,env(safe-area-inset-bottom))!important;transform:none!important;width:44px;height:44px;min-width:44px!important;min-height:44px!important}}
+@media(prefers-reduced-motion:reduce){.photo-viewer,.photo-viewer.closing{animation:none}.photo-viewer>img{transition:none}}
 /* Landscape phones and short screens: the hero fits in the viewport instead of a 640px minimum. */
 @media(min-width:761px) and (max-height:620px){html body #top,html body #initial-hero{min-height:100svh!important}html body :is(#top,#initial-hero) .hero-shade{height:70%!important}}
 #initial-view header{position:absolute;inset:0 0 auto;z-index:20;padding:20px 24px;color:#fffaf2;font:24px Georgia,serif}#initial-view{position:relative}
@@ -955,8 +968,8 @@ class Component extends DCLogic {
   }
 }
 </script>
-<script src="./languages.js"></script>
 <script src="assets/languages.js"></script>
 <script>(()=>{const ready=()=>{if(document.querySelector('#dc-root #top')){document.getElementById('initial-view')?.remove();observer.disconnect();}};const observer=new MutationObserver(ready);observer.observe(document.body,{childList:true,subtree:true});ready();})();</script><noscript><p>Please enable JavaScript for the complete residence tour.</p></noscript>
+<script id="viewer-motion">(()=>{const show=i=>i.complete&&i.naturalWidth?i.classList.add('ready'):0;document.addEventListener('load',e=>{const t=e.target;if(t.matches&&t.matches('.photo-viewer>img'))t.classList.add('ready')},true);new MutationObserver(ms=>{for(const m of ms){if(m.type==='attributes'){const i=m.target;if(i.matches('.photo-viewer>img')){i.classList.remove('ready');requestAnimationFrame(()=>show(i))}continue}m.addedNodes.forEach(n=>{if(n.nodeType!==1)return;const i=n.matches('.photo-viewer>img')?n:n.querySelector&&n.querySelector('.photo-viewer>img');if(i){show(i);setTimeout(()=>i.classList.add('ready'),1500)}});m.removedNodes.forEach(n=>{if(n.nodeType!==1||n.classList.contains('closing'))return;const v=n.matches('.photo-viewer')?n:n.querySelector&&n.querySelector('.photo-viewer');if(!v||matchMedia('(prefers-reduced-motion: reduce)').matches)return;v.classList.add('closing');v.setAttribute('aria-hidden','true');document.body.appendChild(v);setTimeout(()=>v.remove(),340)})}}).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['src']});})();</script>
 </body>
 </html>
