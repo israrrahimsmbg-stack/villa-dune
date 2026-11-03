@@ -23,6 +23,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGE = os.path.join(ROOT, 'index.html')
 PHOTOS = os.path.join(ROOT, 'assets', 'photos')
 WIDTHS = (320, 640, 960)
+MAX_WIDTH = 1920
 REACT = 'assets/runtime-6822817c-e6b8-45c4-a57b-46001611e526.js'
 REACT_DOM = 'assets/runtime-d49d45d7-2421-4760-bce4-e94dc5e9f9f8.js'
 
@@ -67,23 +68,27 @@ LATE_SCRIPTS = (
 
 
 def make_copies():
-    """Create WebP copies and smaller widths; return {photo path: full width}."""
+    """Create WebP copies and smaller widths, including subfolders; return {photo path: full width}."""
     widths = {}
-    for name in sorted(os.listdir(PHOTOS)):
-        stem, ext = os.path.splitext(name)
-        if re.search(r'-(320|640|960)$', stem) or ext.lower() not in ('.webp', '.png', '.jpg', '.jpeg'):
-            continue
-        if ext.lower() != '.webp' and os.path.exists(os.path.join(PHOTOS, stem + '.webp')):
-            continue  # a WebP copy is already used instead
-        image = Image.open(os.path.join(PHOTOS, name)).convert('RGB')
-        full = os.path.join(PHOTOS, stem + '.webp')
-        if ext.lower() != '.webp':
-            image.save(full, 'WEBP', quality=80, method=6)
-        for w in WIDTHS:
-            out = os.path.join(PHOTOS, f'{stem}-{w}.webp')
-            if image.width > w and not os.path.exists(out):
-                image.resize((w, round(image.height * w / image.width)), Image.LANCZOS).save(out, 'WEBP', quality=78, method=6)
-        widths[f'assets/photos/{stem}.webp'] = image.width
+    for folder, _, files in sorted(os.walk(PHOTOS)):
+        rel = os.path.relpath(folder, PHOTOS).replace(os.sep, '/')
+        prefix = 'assets/photos/' + ('' if rel == '.' else rel + '/')
+        for name in sorted(files):
+            stem, ext = os.path.splitext(name)
+            if re.search(r'-(320|640|960)$', stem) or ext.lower() not in ('.webp', '.png', '.jpg', '.jpeg'):
+                continue
+            if ext.lower() != '.webp' and os.path.exists(os.path.join(folder, stem + '.webp')):
+                continue  # a WebP copy is already used instead
+            image = Image.open(os.path.join(folder, name)).convert('RGB')
+            if ext.lower() != '.webp':
+                if image.width > MAX_WIDTH:  # phone and camera exports are far larger than the page needs
+                    image = image.resize((MAX_WIDTH, round(image.height * MAX_WIDTH / image.width)), Image.LANCZOS)
+                image.save(os.path.join(folder, stem + '.webp'), 'WEBP', quality=80, method=6)
+            for w in WIDTHS:
+                out = os.path.join(folder, f'{stem}-{w}.webp')
+                if image.width > w and not os.path.exists(out):
+                    image.resize((w, round(image.height * w / image.width)), Image.LANCZOS).save(out, 'WEBP', quality=78, method=6)
+            widths[f'{prefix}{stem}.webp'] = image.width
     return widths
 
 
@@ -99,7 +104,7 @@ def main():
     widths = make_copies()
 
     # Use the WebP copy of any PNG/JPEG photo.
-    html = re.sub(r"assets/photos/([a-z0-9-]+)\.(?:png|jpe?g)", r'assets/photos/\1.webp', html)
+    html = re.sub(r"assets/photos/([A-Za-z0-9/_-]+)\.(?:png|jpe?g)", r'assets/photos/\1.webp', html)
 
     # srcset for every bundled photo; uploads made later in the editor keep their single file.
     table = json.dumps(widths, separators=(',', ':'))
@@ -108,6 +113,14 @@ def main():
     html = sub_once(r'const sized = [^\n]*;', lambda _: sized, html, 'sized()')
     html = html.replace(r"/^assets\/view-[0-9a-f]+\.webp$/.test(it.src) ? it.src.replace('.webp', '-320.webp')",
                         "sized(it.src) ? it.src.replace('.webp', '-320.webp')")
+
+    # Visitors never see the "Edit photos" button; editing happens in Claude Design.
+    html = re.sub(r'showEditToggle: [^,\n]*,', 'showEditToggle: false,', html, count=1)
+
+    # Photo viewer: put the photo back if the export dropped it.
+    html = re.sub(r'(<div class="photo-viewer"[^>]*>)\s*\n(?!\s*<img)',
+                  lambda m: m.group(1) + '\n    <img src="{{ lb.src }}" alt="{{ lb.cap }}" decoding="async" onClick="{{ stop }}" style="max-width:100%;max-height:84vh;object-fit:contain">\n',
+                  html, count=1)
 
     # Template images: add srcset/sizes where the export left them out.
     def add(src_expr, srcset_expr, sizes):
