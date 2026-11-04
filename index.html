@@ -42,23 +42,9 @@ input,select,textarea,button{font-family:inherit}
 ::placeholder{color:var(--ink-placeholder)}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
-<script>window.__resources={"https://unpkg.com/react@18.3.1/umd/react.production.min.js": "assets/runtime-6822817c-e6b8-45c4-a57b-46001611e526.js", "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js": "assets/runtime-d49d45d7-2421-4760-bce4-e94dc5e9f9f8.js"};</script><script defer src="support.js"></script>
+<script src="support.js"></script>
 </head>
 <body>
-<div id="initial-view"><header>Villa Dune</header><section id="initial-hero" data-screen-label="Hero" style="position:relative;min-height:max(640px,100svh);display:flex;flex-direction:column;justify-content:flex-end;color:oklch(0.98 0.005 80);overflow:hidden;background:oklch(0.22 0.03 235)">
-  <img fetchpriority="high" decoding="async" srcset="assets/photos/hero-pool-gardens-320.webp 320w, assets/photos/hero-pool-gardens-640.webp 640w, assets/photos/hero-pool-gardens-960.webp 960w, assets/photos/hero-pool-gardens.webp 1672w" sizes="100vw" src="assets/photos/hero-pool-gardens.webp" alt="Villa Dune — residence, pool and Mediterranean gardens" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
-  <div class="hero-shade" style="position:absolute;inset:auto 0 0;height:38%;background:linear-gradient(180deg,oklch(0.16 0.03 235 / 0) 0%,oklch(0.16 0.03 235 / .38) 55%,oklch(0.14 0.03 235 / .66) 100%)"></div>
-  <div class="hero-content" style="position:relative;max-width:1320px;width:100%;margin:0 auto;padding:0 clamp(18px,4vw,48px) clamp(22px,3vw,34px);display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 40px;text-shadow:0 1px 2px oklch(0.14 0.03 235 / .5)">
-    <div style="display:flex;flex-direction:column;gap:10px;flex:1 1 420px">
-      <div style="display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:oklch(0.93 0.05 60)"><span style="width:28px;height:1px;background:currentColor"></span>Saint-Tropez · Pampelonne</div>
-      <h1 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(40px,5.2vw,80px);line-height:.95;letter-spacing:-.015em;margin:0">Villa Dune</h1>
-      <p style="max-width:460px;font-size:15px;line-height:1.6;margin:0;color:oklch(0.96 0.01 80)">A gated residence above the bay.</p>
-    </div>
-    <div style="display:flex;gap:12px;flex-wrap:wrap;text-shadow:none">
-      <a href="#residence" style="background:oklch(0.98 0.005 80);color:oklch(0.24 0.02 60);padding:15px 24px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;white-space:nowrap">Enter the residence</a>
-    </div>
-  </div>
-</section></div>
 <x-dc>
 <!-- @template name="Villa Dune site" description="Full single-page residence presentation, ported from the source site" -->
 <helmet><style id="responsive-fixes">
@@ -75,35 +61,19 @@ html body .floor-thumbs>div{width:auto!important;height:auto!important;aspect-ra
 }
 /* Tablets: keep the three wellness rooms on one row and let an odd last offer card span the row. */
 @media(min-width:700px) and (max-width:1099px){
-html body .wellness-gallery{grid-template-columns:repeat(3,minmax(0,1fr))!important}
-html body .wellness-gallery>*{height:300px!important}
 html body .offer-grid>:last-child:nth-child(odd){grid-column:1/-1}
 html body .surroundings-grid>:last-child:nth-child(odd){grid-column:1/-1}
 }
 @media(max-width:1099px){html body .offer-grid>article{min-height:0!important}html body .offer-grid>article>ul{margin-top:8px!important}}
-html{scroll-behavior:smooth}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-@media(max-width:760px){html body #dc-root :is(p,span,div,a,small)[style*="font-size: 10px"],html body #dc-root :is(p,span,div,a,small)[style*="font-size:10px"],html body #dc-root :is(p,span,div,a,small)[style*="font-size: 10.5px"]{font-size:11px!important}}
-html body a[href*="google.com/maps"]{display:inline-block;padding:12px 0 6px!important}
-[role=button][style*="cursor"] img,.wellness-gallery img{transition:transform .9s cubic-bezier(.22,.61,.36,1)}@media(hover:hover){.wellness-gallery>div:hover img{transform:scale(1.03)}}
-/* Photo viewer: soft fade in and out, the photo appears only once loaded, page behind stays still. */
-html:has(.photo-viewer:not(.closing)){overflow:hidden}
-.photo-viewer{background:rgba(10,16,18,.96)!important;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);animation:viewer-in .4s cubic-bezier(.22,.61,.36,1) both;touch-action:pinch-zoom;overscroll-behavior:contain}
-.photo-viewer.closing{animation:viewer-out .32s cubic-bezier(.4,0,.2,1) both;pointer-events:none}
-.photo-viewer>img{opacity:0;transform:scale(.985);transition:opacity .5s ease,transform .7s cubic-bezier(.22,.61,.36,1);box-shadow:0 30px 80px rgba(0,0,0,.45)}
-.photo-viewer>img.ready{opacity:1;transform:none}
-.photo-viewer.closing>img{transform:scale(.985)}
-.photo-viewer>p{font-family:'Cormorant Garamond',serif!important;font-size:15px!important;letter-spacing:.08em!important;text-transform:none!important;font-style:italic;color:rgba(255,255,255,.82)!important}
-.photo-viewer button{display:flex;align-items:center;justify-content:center;border-radius:50%!important;background:rgba(255,255,255,.08)!important;border:1px solid rgba(255,255,255,.18)!important;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);width:48px;height:48px;min-width:48px!important;min-height:48px!important;padding:0!important;line-height:1!important;font-size:28px!important;font-weight:300;transition:background .25s,border-color .25s}
-.photo-viewer button:hover,.photo-viewer button:focus-visible{background:rgba(255,255,255,.2)!important;border-color:rgba(255,255,255,.5)!important;outline:none}
-.photo-viewer button[aria-label="Close"]{top:max(14px,env(safe-area-inset-top))!important;font-size:24px!important}
-.photo-viewer button[aria-label^="Previous"]{left:max(16px,2vw)!important}.photo-viewer button[aria-label^="Next"]{right:max(16px,2vw)!important}
+/* Photo viewer: fades in, the page behind it cannot be dragged, and the photo uses the whole screen. */
+.photo-viewer{background:#0c1417!important;animation:viewer-in .28s ease-out;touch-action:pinch-zoom;overscroll-behavior:contain}
+.photo-viewer>img{animation:viewer-img .35s ease-out}
 @keyframes viewer-in{from{opacity:0}to{opacity:1}}
-@keyframes viewer-out{from{opacity:1}to{opacity:0}}
-@media(max-width:760px){.photo-viewer{padding:64px 0 72px!important}.photo-viewer>img{max-height:calc(100svh - 140px)!important;box-shadow:none}.photo-viewer>p{bottom:max(22px,env(safe-area-inset-bottom))!important;padding:0 72px;line-height:1.3}.photo-viewer button[aria-label^="Previous"],.photo-viewer button[aria-label^="Next"]{top:auto!important;bottom:max(12px,env(safe-area-inset-bottom))!important;transform:none!important;width:44px;height:44px;min-width:44px!important;min-height:44px!important}}
-@media(prefers-reduced-motion:reduce){.photo-viewer,.photo-viewer.closing{animation:none}.photo-viewer>img{transition:none}}
+@keyframes viewer-img{from{opacity:0;transform:scale(.98)}to{opacity:1;transform:none}}
+@media(max-width:760px){.photo-viewer{padding:56px 0 64px!important}.photo-viewer>img{max-height:calc(100svh - 120px)!important}.photo-viewer>p{bottom:max(20px,env(safe-area-inset-bottom))!important;padding:0 24px}}
+@media(prefers-reduced-motion:reduce){.photo-viewer,.photo-viewer>img{animation:none}}
 /* Landscape phones and short screens: the hero fits in the viewport instead of a 640px minimum. */
 @media(min-width:761px) and (max-height:620px){html body #top,html body #initial-hero{min-height:100svh!important}html body :is(#top,#initial-hero) .hero-shade{height:70%!important}}
-#initial-view header{position:absolute;inset:0 0 auto;z-index:20;padding:20px 24px;color:#fffaf2;font:24px Georgia,serif}#initial-view{position:relative}
 </style><title>Villa Dune — Private Residence, Pampelonne</title><style>/* Residence: a compact introduction and consistent, readable photo pairs. */
 .residence-redesign{scroll-margin-top:88px;padding-top:72px!important;padding-bottom:72px!important}
 .residence-intro{display:grid;grid-template-columns:1.1fr 1fr;gap:24px 64px;align-items:end;margin-bottom:32px}
@@ -201,14 +171,14 @@ section[data-screen-label]:not([data-screen-label="Hero"]):not([data-screen-labe
 </header>
 
 <section id="top" data-screen-label="Hero" onDragOver="{{ single.hero.over }}" onDrop="{{ single.hero.drop }}" style="position:relative;min-height:max(640px,100svh);display:flex;flex-direction:column;justify-content:flex-end;color:oklch(0.98 0.005 80);overflow:hidden;background:oklch(0.22 0.03 235)">
-  <img fetchpriority="high" decoding="async" src="{{ single.hero.src }}" srcset="{{ single.hero.srcset }}" sizes="100vw" alt="Villa Dune — residence, pool and Mediterranean gardens" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+  <img fetchpriority="high" decoding="async" src="{{ single.hero.src }}" srcset="{{ single.hero.srcset }}" sizes="100vw" alt="Villa Dune — residence, pool and Mediterranean gardens" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; left: 2px; top: -1px">
   <div class="hero-shade" style="position:absolute;inset:auto 0 0;height:38%;background:linear-gradient(180deg,oklch(0.16 0.03 235 / 0) 0%,oklch(0.16 0.03 235 / .38) 55%,oklch(0.14 0.03 235 / .66) 100%)"></div>
   <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}">
     <button type="button" onClick="{{ single.hero.replace }}" style="position:absolute;top:128px;right:clamp(18px,4vw,48px);z-index:3;border:0;background:oklch(0.98 0.005 80);color:oklch(0.24 0.02 60);height:40px;padding:0 16px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;cursor:pointer">Replace hero photo</button>
   </sc-if>
   <div class="hero-content" style="position:relative;max-width:1320px;width:100%;margin:0 auto;padding:0 clamp(18px,4vw,48px) clamp(22px,3vw,34px);display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 40px;text-shadow:0 1px 2px oklch(0.14 0.03 235 / .5)">
     <div style="display:flex;flex-direction:column;gap:10px;flex:1 1 420px">
-      <div style="display:flex;align-items:center;gap:14px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:oklch(0.95 0.03 70);margin-bottom:4px"><svg viewBox="0 0 100 110" aria-hidden="true" style="height:26px;width:auto;display:block;flex:none;color:currentColor"><path d="M17 107V50a33 33 0 0 1 66 0v57" fill="none" stroke="currentColor" stroke-width="7"></path><circle cx="64" cy="50" r="6.5" fill="currentColor"></circle><path d="M20.5 73c6-1.6 11.5-1.8 16.5.6 5.5 2.6 10 6.6 17 8.4 6 1.5 12 2.4 18 3H20.5z" fill="currentColor"></path><path d="M20.5 87.5h59" stroke="currentColor" stroke-width="1.6"></path><path d="M30 93h40M38 98.5h26M44 103.5h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg><span style="width:1px;height:22px;background:currentColor;opacity:.5"></span><span>A Black Edit Residence</span></div>
+      <div style="display:flex;align-items:center;gap:14px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:oklch(0.95 0.03 70);margin-bottom:4px"><svg viewBox="0 0 100 110" aria-hidden="true" style="height:26px;width:auto;display:block;flex:none;color:currentColor"><path d="M17 107V50a33 33 0 0 1 66 0v57" fill="none" stroke="currentColor" stroke-width="7"></path><circle cx="64" cy="50" r="6.5" fill="currentColor"></circle><path d="M20.5 73c6-1.6 11.5-1.8 16.5.6 5.5 2.6 10 6.6 17 8.4 6 1.5 12 2.4 18 3H20.5z" fill="currentColor"></path><path d="M20.5 87.5h59" stroke="currentColor" stroke-width="1.6"></path><path d="M30 93h40M38 98.5h26M44 103.5h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg><span style="font-size: 13px; font-weight: 500; text-align: left; text-decoration-line: none; font-style: normal; line-height: 1.2">A Black Edit Residence</span><span style="width:1px;height:22px;background:currentColor;opacity:.5"></span></div>
       <h1 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(40px,5.2vw,80px);line-height:.95;letter-spacing:-.015em;margin:0">Villa Dune</h1>
       <p style="max-width:460px;font-size:15px;line-height:1.6;margin:0;color:oklch(0.96 0.01 80)">A gated residence above the bay.</p>
     </div>
@@ -217,7 +187,7 @@ section[data-screen-label]:not([data-screen-label="Hero"]):not([data-screen-labe
       
     </div>
   </div>
-</section>
+<div style="font-size: 16px; line-height: 1; font-family: Jost, sans-serif; position: absolute; left: 194px; top: 102px"><br></div></section>
 
 <section data-screen-label="Key facts" style="padding:0 clamp(18px,4vw,48px)">
   <div style="max-width:1320px;margin:0 auto">
@@ -335,7 +305,7 @@ section[data-screen-label]:not([data-screen-label="Hero"]):not([data-screen-labe
           <div style="font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:oklch(0.52 0.12 45)">Wellness &amp; bathing</div>
           <h2 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(36px,4.4vw,60px);line-height:1;margin:18px 0 0">The restorative rooms.</h2>
         </div>
-        <p style="font-size:16px;line-height:1.8;color:oklch(0.42 0.02 60);margin:0;max-width:540px">Beyond the garden you will find a private wellness retreat complete with gym, massage room, hammam and shower facilities.</p>
+        <p style="font-size:16px;line-height:1.8;color:oklch(0.42 0.02 60);margin:0;max-width:540px">Beyond the garden you will find the a private wellness retreat complete with gym, massage room, hammam and shower facilities..</p>
       </div>
       <div class="wellness-gallery vd-gal vd-3" onDragOver="{{ gal.wellness.over }}" onDrop="{{ gal.wellness.drop }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px">
         <sc-for list="{{ gal.wellness.items }}" as="p" hint-placeholder-count="5">
@@ -438,7 +408,7 @@ section[data-screen-label]:not([data-screen-label="Hero"]):not([data-screen-labe
         <div style="font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:oklch(0.52 0.12 45)">Two bars</div>
         <h3 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(32px,3.8vw,50px);line-height:1;margin:14px 0 0">Poolside and upper sea-view terrace</h3>
       </div>
-      <p style="font-size:15px;line-height:1.8;color:oklch(0.42 0.02 60);margin:0;max-width:540px">One bar sits beside the pool; for drinks in the last of the sunlight. The other bar is perfectly situated to service the top terrace and the living spaces.</p>
+      <p style="font-size:15px;line-height:1.8;color:oklch(0.42 0.02 60);margin:0;max-width:540px">One bar sits beside the pool; for drinks in the last sun light. The other bar is perfectly situated to service the top terrace and the living spaces.</p>
     </div>
     <div data-tile="{{ tileMode }}" class="vd-wide" onClick="{{ single.poolbar.open }}" onDragOver="{{ single.poolbar.over }}" onDrop="{{ single.poolbar.drop }}" style="position:relative;width:100%;aspect-ratio:21/9;overflow:hidden;background:oklch(0.93 0.015 75)">
       <img src="{{ single.poolbar.src }}" srcset="{{ single.poolbar.srcset }}" sizes="(max-width: 760px) 100vw, 1240px" decoding="async" alt="The white marble pool bar with barbecue grill" loading="lazy" style="width:100%;height:100%;object-fit:cover">
@@ -653,8 +623,8 @@ section[data-screen-label]:not([data-screen-label="Hero"]):not([data-screen-labe
 </sc-if>
 
 <sc-if value="{{ lbOpen }}" hint-placeholder-val="{{ false }}">
-  <div class="photo-viewer" role="dialog" aria-modal="true" aria-label="{{ lb.cap }}" onClick="{{ closeLb }}" style="position: fixed; inset: 0; z-index: 50; background: url(&quot;assets/photos/pool-cactus-garden-user.webp&quot;) center / cover no-repeat; display: flex; align-items: center; justify-content: center; padding: clamp(16px,5vw,64px)">
-    <img src="{{ lb.src }}" srcset="{{ lb.srcset }}" sizes="100vw" alt="{{ lb.cap }}" decoding="async" onClick="{{ stop }}" style="max-width:100%;max-height:84vh;object-fit:contain">
+  <div class="photo-viewer" role="dialog" aria-modal="true" aria-label="{{ lb.cap }}" onClick="{{ closeLb }}" style="position: fixed; inset: 0; z-index: 50; background: url(&quot;./pool-cactus-garden-mw0n675z-azii.webp&quot;) center / cover no-repeat; display: flex; align-items: center; justify-content: center; padding: clamp(16px,5vw,64px)">
+    
     <p style="position:absolute;bottom:18px;left:0;right:0;text-align:center;margin:0;color:oklch(0.9 0.01 230);font-size:11px;letter-spacing:.2em;text-transform:uppercase">{{ lb.cap }} {{ lb.count }}</p>
     <sc-if value="{{ lb.multi }}" hint-placeholder-val="{{ false }}">
       <button type="button" onClick="{{ lbPrev }}" aria-label="Previous photo" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);border:0;background:transparent;color:#fff;font-family:'Cormorant Garamond',serif;font-size:48px;min-width:56px;min-height:56px;cursor:pointer">‹</button>
@@ -671,15 +641,15 @@ class Component extends DCLogic {
     return {
       galleries: {
         residence: g([["assets/photos/salon-sea.webp","The salon, facing the sea"],["assets/photos/garden-suite-pool.webp","Garden suite with pool access"],["assets/photos/master-bedroom-terrace.webp","Master bedroom, terrace to the sea"],["assets/photos/garden-suite-lawn.webp","Garden suite, doors to the lawn"]]),
-        lv0: g([["assets/photos/user/lv0-0.webp","master bedroom overlooking the Mediterranean"],["assets/photos/user/lv0-1.webp","master bedroom Bathroom"],["assets/photos/principal-terrace.webp","The principal terrace — shaded lounge and dining"],["assets/photos/grand-salon.webp","The grand salon"],["assets/photos/living-room.webp","The living room"],["assets/photos/user/lv0-5.webp","principal floor outdoor kitchen with Green Marble Barbecue"],["assets/photos/user/lv0-6.webp"," Luxury Kitchen"]]),
-        lv1: g([["assets/photos/garden-ensuite-pool.webp","Garden en-suite with sitting area"],["assets/photos/garden-ensuite-sea.webp","Garden en-suite with sea view"],["assets/photos/garden-suite-lawn.webp","Garden suite, doors to the lawn"],["assets/photos/poolside-kitchen.webp","The poolside bar"],["assets/photos/user/lv1-4.webp","A GARDEN SUITE BATHROOM"],["assets/photos/user/lv1-5.webp","A GARDEN SUITE BATHROOM "]]),
-        lv2: g([["assets/photos/user/lv2-0.webp"," Loft Bedroom Interior"],["assets/photos/user/lv2-1.webp","Refined Villa Dune children's suite"],["assets/photos/user/lv2-2.webp","separate nanny bedroom"],["assets/photos/user/lv2-3.webp","a view from the children's suite"]]),
+        lv0: g([["assets/photos/user/lv0-0.png","master bedroom overlooking the Mediterranean"],["assets/photos/user/lv0-1.png","master bedroom Bathroom"],["assets/photos/principal-terrace.webp","The principal terrace — shaded lounge and dining"],["assets/photos/grand-salon.webp","The grand salon"],["assets/photos/living-room.webp","The living room"],["assets/photos/user/lv0-5.png","principal floor out door kitchen with Green Marble Barbecue"],["assets/photos/user/lv0-6.png"," Luxury Kitchen"]]),
+        lv1: g([["assets/photos/garden-ensuite-pool.webp","Garden en-suite with sitting area"],["assets/photos/garden-ensuite-sea.webp","Garden en-suite with sea view"],["assets/photos/garden-suite-lawn.webp","Garden suite, doors to the lawn"],["assets/photos/poolside-kitchen.webp","The poolside bar"],["assets/photos/user/lv1-4.jpg","A GARDEN SUITE BATHROOM"],["assets/photos/user/lv1-5.jpg","A GARDEN SUITE BATHROOM "]]),
+        lv2: g([["assets/photos/user/lv2-0.png"," Loft Bedroom Interior"],["assets/photos/user/lv2-1.png","Refined Villa Dune children's suite"],["assets/photos/user/lv2-2.png","separate nanny bedroom"],["assets/photos/user/lv2-3.png","a view from the children's suite"]]),
         wellness: g([["assets/photos/gym-arched-mirrors.webp","fitness studio"],["assets/photos/spa-treatment-room.webp","The spa treatment room"],["assets/photos/hammam.webp","The hammam steam room"]]),
-        outdoors: g([["assets/photos/user/outdoors-0.webp","Pool cactus garden"],["assets/photos/user/outdoors-1.webp","Pool garden"],["assets/photos/user/outdoors-2.webp","Gazebo and garden dining"],["assets/photos/user/outdoors-3.webp","Pool pergola"],["assets/photos/user/outdoors-4.webp","Aerial garden, pool, and sea"]]),
+        outdoors: g([["assets/photos/user/outdoors-0.png","Pool cactus garden"],["assets/photos/user/outdoors-1.png","Pool garden"],["assets/photos/user/outdoors-2.png","Gazebo and garden dining"],["assets/photos/user/outdoors-3.png","Pool pergola"],["assets/photos/user/outdoors-4.png","Aerial garden, pool, and sea"]]),
         dining: g([["assets/photos/garden-terrace-dinner.webp","garden dining"],["assets/photos/pool-lunch.webp","Lunch by the pool"],["assets/photos/sea-view-dining.webp","Dining on the sea-view terrace"],["assets/photos/pergola-table.webp","The outdoor dining room"]]),
-        parties: g([["assets/photos/filming-golden-hour.webp","Filming at golden hour"],["assets/photos/terrace-after-dark.webp","The terrace after dark"],["assets/photos/bar-facing-sea.webp","Various arrangements facing the sea"],["assets/photos/on-location.webp","On location"]])
+        parties: g([["assets/photos/filming-golden-hour.webp","Filming at golden hour"],["assets/photos/terrace-after-dark.webp","The terrace after dark"],["assets/photos/bar-facing-sea.webp","various arrangments facing the sea"],["assets/photos/on-location.webp","On location"]])
       },
-      singles: {"hero":"assets/photos/user/hero.webp","poolbar":"assets/photos/pool-bar-white-marble.webp","bbq":"assets/photos/green-marble-bar.webp","celebrate":"assets/photos/celebration-terrace.webp","film":"assets/photos/production-terrace.webp","village":"assets/photos/ramatuelle-village.webp","club":"assets/photos/le-club-55.webp","tropez":"assets/photos/saint-tropez-port.webp"}
+      singles: {"hero":"assets/photos/user/hero.jpg","poolbar":"assets/photos/pool-bar-white-marble.webp","bbq":"assets/photos/green-marble-bar.webp","celebrate":"assets/photos/celebration-terrace.webp","film":"assets/photos/production-terrace.webp","village":"assets/photos/ramatuelle-village.webp","club":"assets/photos/le-club-55.webp","tropez":"assets/photos/saint-tropez-port.webp"}
     };
   }
   state = { scrolled: false, past: false, atForm: false, w: 1280, menu: false, level: 0, img: 0, mode: null, sent: false, error: '', lb: null,
@@ -852,7 +822,7 @@ class Component extends DCLogic {
       wellness: () => ['auto', '360px'], dining: i => S.w < 760 ? ['1/-1', '300px'] : [['span 7', 'span 5', 'span 5', 'span 7'][i % 4], 'clamp(300px,34vw,460px)'], parties: (i, n) => S.w < 760 ? ['1/-1', '280px'] : (() => { const r = (n || 5) % 3, big = r === 2 ? 2 : r === 1 ? 4 : 0; if (i < big) return [r === 2 ? ['span 7', 'span 5'][i] : 'span 6', 'clamp(300px,32vw,440px)']; return ['span 4', '320px']; })()
     };
     // Bundled photographs ship with 320/640/960/1200 px copies so phones never download the full-size file.
-    const sized = src => { const w = {"assets/photos/bar-facing-sea.webp":960,"assets/photos/celebration-terrace.webp":960,"assets/photos/childrens-floor.webp":960,"assets/photos/filming-golden-hour.webp":960,"assets/photos/gallery-hall-art.webp":960,"assets/photos/garden-ensuite-pool.webp":1448,"assets/photos/garden-ensuite-sea.webp":960,"assets/photos/garden-ensuite-sitting.webp":960,"assets/photos/garden-pavilion.webp":960,"assets/photos/garden-suite-lawn.webp":960,"assets/photos/garden-suite-pool.webp":960,"assets/photos/garden-terrace-dinner.webp":960,"assets/photos/gardens-to-sea.webp":960,"assets/photos/grand-salon.webp":960,"assets/photos/green-marble-bar.webp":960,"assets/photos/gym-arched-mirrors.webp":960,"assets/photos/hammam.webp":960,"assets/photos/hero-pool-gardens.webp":1672,"assets/photos/le-club-55.webp":960,"assets/photos/living-room-terrace.webp":960,"assets/photos/living-room.webp":960,"assets/photos/master-bedroom-terrace.webp":960,"assets/photos/on-location.webp":960,"assets/photos/pergola-table.webp":960,"assets/photos/pool-bar-white-marble.webp":960,"assets/photos/pool-cactus-garden-user.webp":960,"assets/photos/pool-cactus-garden.webp":960,"assets/photos/pool-garden.webp":1448,"assets/photos/pool-lunch.webp":960,"assets/photos/pool-pergola.webp":960,"assets/photos/poolside-kitchen.webp":960,"assets/photos/principal-terrace.webp":960,"assets/photos/production-terrace.webp":960,"assets/photos/ramatuelle-village.webp":960,"assets/photos/saint-tropez-port.webp":1600,"assets/photos/salon-sea.webp":960,"assets/photos/sea-view-dining.webp":960,"assets/photos/spa-treatment-room.webp":960,"assets/photos/terrace-after-dark.webp":960,"assets/photos/user/hero.webp":1670,"assets/photos/user/lv0-0.webp":1600,"assets/photos/user/lv0-1.webp":1534,"assets/photos/user/lv0-5.webp":1448,"assets/photos/user/lv0-6.webp":1534,"assets/photos/user/lv1-4.webp":1537,"assets/photos/user/lv1-5.webp":1535,"assets/photos/user/lv2-0.webp":1534,"assets/photos/user/lv2-1.webp":1020,"assets/photos/user/lv2-2.webp":1600,"assets/photos/user/lv2-3.webp":1064,"assets/photos/user/outdoors-0.webp":960,"assets/photos/user/outdoors-1.webp":1448,"assets/photos/user/outdoors-2.webp":960,"assets/photos/user/outdoors-3.webp":960,"assets/photos/user/outdoors-4.webp":1448}[src]; if (!w) return ''; return [320, 640, 960].filter(x => x < w).map(x => src.replace('.webp', '-' + x + '.webp') + ' ' + x + 'w').concat(src + ' ' + w + 'w').join(', '); };
+    const sized = src => '';
     const ring = (gid, i) => S.over && S.over.gid === gid && S.over.i === i ? 'inset 0 0 0 3px oklch(0.62 0.12 45)' : 'none';
     const st = (gid, i) => S.drag && S.drag.gid === gid && S.drag.i === i ? 'drag' : (S.over && S.over.gid === gid && S.over.i === i ? 'over' : '');
     const dim = (gid, i) => S.drag && S.drag.gid === gid && S.drag.i === i ? 0.35 : 1;
@@ -884,7 +854,7 @@ class Component extends DCLogic {
     const levels = [
       { gid: 'lv1', num: '00', label: 'Garden suites', k: 'Level 00 · Pool level', t: 'Five bedroom suites on the pool.', b: 'Five pool-facing bedrooms each have an en-suite shower room; two also include bathtubs. A separate staff studio provides accommodation for two, a lounge, kitchenette, spacious laundry room, private terrace and its own separate entrance. ', f: [['Guest rooms', 'Five en-suite bedrooms'], ['', ''], ['Staff area', 'separate studio + laundry facilities ']] },
       { gid: 'lv0', num: '01', label: 'Principal floor', k: 'Level 01 · First floor', t: 'Seamless indoor-outdoor living', b: 'The principal floor is an expansive, open plan living space with panoramic glass doors opening onto a fantastic sea facing terrace. Museum-quality paintings and photographic works line the hall and salon, curated to sit alongside the multiple dining areas and the kitchen. This floor encompass an impressive outdoor bar and alfresco kitchen which connect directly to the main kitchen providing seamless service and effortless entertaining. ', f: [['Art', 'Museum-quality paintings & photography'], ['Living', 'Gallery hall · salon · dining · kitchen'], ['Outside', 'Front and rear dining terraces, outdoor kitchen, bar & barbecue']] },
-      { gid: 'lv2', num: '02', label: 'Children Suite', k: 'Level 02 · Children’s floor', t: 'A floor of their own.', b: 'The top attic level is arranged for younger guests with three double beds and one separate king size bed for a nanny, an en-suite bathroom and separate toilet. ', f: [['Beds', '3 double beds - 1 king-size bed'], ['Setting', 'Quiet, above the main floors'], ['Ideal for', 'Children & nannies']] }
+      { gid: 'lv2', num: '02', label: 'Children Suite', k: 'Level 02 · Children’s floor', t: 'A floor of their own.', b: 'The top attic level is arranged for younger guests with three double beds and one separate king size bed for a nanny, an en-suite bathroom and separate toilette. ', f: [['Beds', '3 double beds - 1 king-size bed'], ['Setting', 'Quiet, above the main floors'], ['Ideal for', 'Children & nannies']] }
     ];
     const L = levels[S.level], lgid = L.gid, limgs = D.galleries[lgid];
     const li = Math.max(0, Math.min(S.img, limgs.length - 1)), cur = limgs[li];
@@ -963,7 +933,7 @@ class Component extends DCLogic {
       closeLb: e => { stop(e); this.setState({ lb: null }); },
       lbPrev: e => { stop(e); this.stepLb(-1); }, lbNext: e => { stop(e); this.stepLb(1); },
       showSticky: (P.stickyCta ?? true) && S.past && !S.atForm && !S.lb && !ed,
-      showEditToggle: false,
+      showEditToggle: (P.photoEditor ?? true) && !ed && !S.lb,
       startEdit: () => this.setState({ editing: true, menu: false }),
       stopEdit: () => this.setState({ editing: false, drag: null, over: null }),
       status: S.busy ? `Processing ${S.busy} photo${S.busy > 1 ? 's' : ''}…` : (S.saved || 'Changes save automatically'),
@@ -975,8 +945,6 @@ class Component extends DCLogic {
   }
 }
 </script>
-<script src="assets/languages.js"></script>
-<script>(()=>{const ready=()=>{if(document.querySelector('#dc-root #top')){document.getElementById('initial-view')?.remove();observer.disconnect();}};const observer=new MutationObserver(ready);observer.observe(document.body,{childList:true,subtree:true});ready();})();</script><noscript><p>Please enable JavaScript for the complete residence tour.</p></noscript>
-<script id="viewer-motion">(()=>{const show=i=>i.complete&&i.naturalWidth?i.classList.add('ready'):0;document.addEventListener('load',e=>{const t=e.target;if(t.matches&&t.matches('.photo-viewer>img'))t.classList.add('ready')},true);new MutationObserver(ms=>{for(const m of ms){if(m.type==='attributes'){const i=m.target;if(i.matches('.photo-viewer>img')){i.classList.remove('ready');requestAnimationFrame(()=>show(i))}continue}m.addedNodes.forEach(n=>{if(n.nodeType!==1)return;const i=n.matches('.photo-viewer>img')?n:n.querySelector&&n.querySelector('.photo-viewer>img');if(i){show(i);setTimeout(()=>i.classList.add('ready'),1500)}});m.removedNodes.forEach(n=>{if(n.nodeType!==1||n.classList.contains('closing'))return;const v=n.matches('.photo-viewer')?n:n.querySelector&&n.querySelector('.photo-viewer');if(!v||matchMedia('(prefers-reduced-motion: reduce)').matches)return;v.classList.add('closing');v.setAttribute('aria-hidden','true');document.body.appendChild(v);setTimeout(()=>v.remove(),340)})}}).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['src']});})();</script>
+<script src="./languages.js"></script>
 </body>
 </html>
