@@ -50,7 +50,8 @@
   }
 
   function mount() {
-    const header = document.querySelector('header > div');
+    const brand = document.querySelector('header a[href="#top"]');
+    const header = brand ? brand.parentElement : document.querySelector('header > div');
     if (!header || header.querySelector('[data-language-control]')) return;
     const control = document.createElement('div');
     control.dataset.languageControl = '';
@@ -117,9 +118,11 @@
     html[data-locale=ar] header>a,html[data-locale=ar] .language-control{direction:ltr}
     html[data-locale=zh] body{font-family:Arial,'Microsoft YaHei','PingFang SC',sans-serif!important}
     #top .hero-content p{overflow-wrap:break-word}
-    @media(min-width:980px) and (max-width:1250px){header nav{gap:12px!important;font-size:10px!important;letter-spacing:.08em!important}header>div{gap:12px!important}}
-    @media(max-width:979px){header>div{gap:8px!important}header>div>a{min-width:0;flex:1 1 auto}header>div>a>span:first-child{font-size:20px!important}header>div>a>span:last-child{font-size:10px!important;letter-spacing:.12em!important;white-space:normal!important}.language-control select{max-width:88px;font-size:11px}header button[aria-label]{min-width:44px!important;font-size:11px!important}}
-    @media(max-width:359px){header>div{padding-inline:12px!important}header>div>a>span:first-child{font-size:18px!important}.language-control select{max-width:78px}}
+    html{scroll-padding-top:var(--vd-head,72px)}html:has(header .be-bar){--vd-head:106px}.residence-redesign{scroll-margin-top:var(--vd-head,72px)!important}
+    @media(max-width:640px){.be-bar .be-sub{display:none!important}.be-bar>div{gap:10px!important;letter-spacing:.24em!important}}
+    @media(min-width:980px) and (max-width:1250px){header nav{gap:12px!important;font-size:10px!important;letter-spacing:.08em!important}header>div:not(.be-bar){gap:12px!important}}
+    @media(max-width:979px){header>div:not(.be-bar){gap:8px!important}header>div:not(.be-bar)>a{min-width:0;flex:1 1 auto}header>div:not(.be-bar)>a>span:first-child{font-size:20px!important}header>div:not(.be-bar)>a>span:last-child{font-size:10px!important;letter-spacing:.12em!important;white-space:normal!important}.language-control select{max-width:88px;font-size:11px}header button[aria-label]{min-width:44px!important;font-size:11px!important}}
+    @media(max-width:359px){header>div:not(.be-bar){padding-inline:12px!important}header>div:not(.be-bar)>a>span:first-child{font-size:18px!important}.language-control select{max-width:78px}}
     @media(max-width:760px){#top{min-height:100svh!important;height:auto!important}#top h1{overflow-wrap:break-word}#top .hero-content{padding-top:24px!important;padding-bottom:24px!important}}
   `;
   document.head.append(style);
