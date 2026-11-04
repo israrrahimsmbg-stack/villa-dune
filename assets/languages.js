@@ -98,6 +98,10 @@
     apply();
   }
 
+  // Close the phone/tablet menu with Escape or a tap outside the header, like most sites.
+  const menuOpen = () => { const b = document.querySelector('header button[aria-label="Menu"]'); return b && document.querySelector('header nav[style*="column"]') ? b : null; };
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !document.querySelector('.photo-viewer')) { const b = menuOpen(); if (b) b.click(); } });
+  document.addEventListener('click', e => { if (e.target.closest('header')) return; const b = menuOpen(); if (b) { b.click(); } }, true);
   document.addEventListener('change', event => {
     if (event.target.id === 'site-language') setLanguage(event.target.value, true);
   }, true);
