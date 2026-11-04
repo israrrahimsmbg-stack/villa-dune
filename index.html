@@ -201,7 +201,7 @@ section[data-screen-label]:not([data-screen-label="Hero"]):not([data-screen-labe
 </header>
 
 <section id="top" data-screen-label="Hero" onDragOver="{{ single.hero.over }}" onDrop="{{ single.hero.drop }}" style="position:relative;min-height:max(640px,100svh);display:flex;flex-direction:column;justify-content:flex-end;color:oklch(0.98 0.005 80);overflow:hidden;background:oklch(0.22 0.03 235)">
-  <img fetchpriority="high" decoding="async" src="{{ single.hero.src }}" srcset="{{ single.hero.srcset }}" sizes="100vw" alt="Villa Dune — residence, pool and Mediterranean gardens" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; left: 2px; top: -1px">
+  <img fetchpriority="high" decoding="async" src="{{ single.hero.src }}" srcset="{{ single.hero.srcset }}" sizes="100vw" alt="Villa Dune — residence, pool and Mediterranean gardens" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
   <div class="hero-shade" style="position:absolute;inset:auto 0 0;height:38%;background:linear-gradient(180deg,oklch(0.16 0.03 235 / 0) 0%,oklch(0.16 0.03 235 / .38) 55%,oklch(0.14 0.03 235 / .66) 100%)"></div>
   <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}">
     <button type="button" onClick="{{ single.hero.replace }}" style="position:absolute;top:128px;right:clamp(18px,4vw,48px);z-index:3;border:0;background:oklch(0.98 0.005 80);color:oklch(0.24 0.02 60);height:40px;padding:0 16px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;cursor:pointer">Replace hero photo</button>
@@ -217,7 +217,7 @@ section[data-screen-label]:not([data-screen-label="Hero"]):not([data-screen-labe
       
     </div>
   </div>
-<div style="font-size: 16px; line-height: 1; font-family: Jost, sans-serif; position: absolute; left: 194px; top: 102px"><br></div></section>
+</section>
 
 <section data-screen-label="Key facts" style="padding:0 clamp(18px,4vw,48px)">
   <div style="max-width:1320px;margin:0 auto">
@@ -653,7 +653,7 @@ section[data-screen-label]:not([data-screen-label="Hero"]):not([data-screen-labe
 </sc-if>
 
 <sc-if value="{{ lbOpen }}" hint-placeholder-val="{{ false }}">
-  <div class="photo-viewer" role="dialog" aria-modal="true" aria-label="{{ lb.cap }}" onClick="{{ closeLb }}" style="position: fixed; inset: 0; z-index: 50; background: url(&quot;./pool-cactus-garden-mw0n675z-azii.webp&quot;) center / cover no-repeat; display: flex; align-items: center; justify-content: center; padding: clamp(16px,5vw,64px)">
+  <div class="photo-viewer" role="dialog" aria-modal="true" aria-label="{{ lb.cap }}" onClick="{{ closeLb }}" style="position: fixed; inset: 0; z-index: 50; background: url(&quot;assets/photos/pool-cactus-garden-user.webp&quot;) center / cover no-repeat; display: flex; align-items: center; justify-content: center; padding: clamp(16px,5vw,64px)">
     <img src="{{ lb.src }}" srcset="{{ lb.srcset }}" sizes="100vw" alt="{{ lb.cap }}" decoding="async" onClick="{{ stop }}" style="max-width:100%;max-height:84vh;object-fit:contain">
     <p style="position:absolute;bottom:18px;left:0;right:0;text-align:center;margin:0;color:oklch(0.9 0.01 230);font-size:11px;letter-spacing:.2em;text-transform:uppercase">{{ lb.cap }} {{ lb.count }}</p>
     <sc-if value="{{ lb.multi }}" hint-placeholder-val="{{ false }}">
