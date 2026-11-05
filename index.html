@@ -173,7 +173,7 @@ section[data-screen-label]:not([data-screen-label="Hero"]):not([data-screen-labe
 <input type="file" ref="{{ fileRef }}" onChange="{{ onFile }}" style="display:none">
 
 <header data-solid="{{ navSolid }}" style="position:fixed;inset:0 0 auto;z-index:20;transition:background .35s,color .35s,border-color .35s;backdrop-filter:blur(14px)">
-  <div class="be-bar" style="border-bottom:1px solid color-mix(in oklch,currentColor 16%,transparent)"><div style="max-width:1320px;margin:0 auto;padding:0 clamp(18px,4vw,48px);height:34px;display:flex;align-items:center;justify-content:center;gap:12px;font-size:10px;letter-spacing:.32em;text-transform:uppercase;line-height:1;white-space:nowrap"><svg viewBox="0 0 100 110" aria-hidden="true" style="height:17px;width:auto;display:block;flex:none"><path d="M17 107V50a33 33 0 0 1 66 0v57" fill="none" stroke="currentColor" stroke-width="7"></path><circle cx="64" cy="50" r="6.5" fill="currentColor"></circle><path d="M20.5 73c6-1.6 11.5-1.8 16.5.6 5.5 2.6 10 6.6 17 8.4 6 1.5 12 2.4 18 3H20.5z" fill="currentColor"></path><path d="M20.5 87.5h59" stroke="currentColor" stroke-width="1.6"></path><path d="M30 93h40M38 98.5h26M44 103.5h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg><span style="font-weight:500">A Black Edit Residence</span><span class="be-sub" style="display:flex;align-items:center;gap:12px;opacity:.7"><span style="width:18px;height:1px;background:currentColor"></span><span>Luxury Villa Escapes</span></span></div></div>
+  <div class="be-bar" style="border-bottom:1px solid color-mix(in oklch,currentColor 16%,transparent)"><div style="max-width:1320px;margin:0 auto;padding:0 clamp(18px,4vw,48px);height:34px;display:flex;align-items:center;justify-content:center;gap:12px;font-size:10px;letter-spacing:.32em;text-transform:uppercase;line-height:1;white-space:nowrap"><svg viewBox="0 0 100 110" aria-hidden="true" style="height:17px;width:auto;display:block;flex:none"><path d="M17 107V50a33 33 0 0 1 66 0v57" fill="none" stroke="currentColor" stroke-width="7"></path><circle cx="64" cy="50" r="6.5" fill="currentColor"></circle><path d="M20.5 73c6-1.6 11.5-1.8 16.5.6 5.5 2.6 10 6.6 17 8.4 6 1.5 12 2.4 18 3H20.5z" fill="currentColor"></path><path d="M20.5 87.5h59" stroke="currentColor" stroke-width="1.6"></path><path d="M30 93h40M38 98.5h26M44 103.5h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg><span style="font-weight:500">A Black Edit Residence</span><span class="be-sub" style="display:flex;align-items:center;gap:12px;opacity:.7"><span style="width:18px;height:1px;background:currentColor"></span><span style="width: 181px; height: 12px">Luxury Villa Escapes</span></span></div></div>
   <div style="max-width: 1320px; margin: 0 auto; padding: 0 clamp(18px,4vw,48px); height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 20px; position: relative">
     <a href="#top" style="display:flex;flex-direction:column;gap:3px;line-height:1">
       <span style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:500">Villa Dune</span>
@@ -202,7 +202,7 @@ section[data-screen-label]:not([data-screen-label="Hero"]):not([data-screen-labe
 
 <section id="top" data-screen-label="Hero" onDragOver="{{ single.hero.over }}" onDrop="{{ single.hero.drop }}" style="position:relative;min-height:max(640px,100svh);display:flex;flex-direction:column;justify-content:flex-end;color:oklch(0.98 0.005 80);overflow:hidden;background:oklch(0.22 0.03 235)">
   <img fetchpriority="high" decoding="async" src="{{ single.hero.src }}" srcset="{{ single.hero.srcset }}" sizes="100vw" alt="Villa Dune — residence, pool and Mediterranean gardens" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
-  <div class="hero-shade" style="position:absolute;inset:auto 0 0;height:38%;background:linear-gradient(180deg,oklch(0.16 0.03 235 / 0) 0%,oklch(0.16 0.03 235 / .38) 55%,oklch(0.14 0.03 235 / .66) 100%)"></div>
+  <div class="hero-shade" style="position: absolute; inset: auto 0 0; height: 38%; background: linear-gradient(180deg,oklch(0.16 0.03 235 / 0) 0%,oklch(0.16 0.03 235 / .38) 55%,oklch(0.14 0.03 235 / .66) 100%)"></div>
   <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}">
     <button type="button" onClick="{{ single.hero.replace }}" style="position:absolute;top:150px;right:clamp(18px,4vw,48px);z-index:3;border:0;background:oklch(0.98 0.005 80);color:oklch(0.24 0.02 60);height:40px;padding:0 16px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;cursor:pointer">Replace hero photo</button>
   </sc-if>
@@ -528,6 +528,16 @@ section[data-screen-label]:not([data-screen-label="Hero"]):not([data-screen-labe
       <p style="font-size:16px;line-height:1.8;color:oklch(0.42 0.02 60);margin:0;max-width:540px">Walk privately to Pampelonne, linger at Le Club 55 or disappear into old Ramatuelle: the peninsula is close at hand without intruding on the house.</p>
     </div>
     <div class="surroundings-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px">
+      <article onDragOver="{{ single.beach.over }}" onDrop="{{ single.beach.drop }}" style="position:relative;min-height:520px;overflow:hidden;color:oklch(0.98 0.005 80);background:oklch(0.22 0.03 235)">
+        <sc-if value="{{ single.beach.src }}" hint-placeholder-val="{{ false }}"><img src="{{ single.beach.src }}" srcset="{{ single.beach.srcset }}" sizes="(max-width: 760px) 100vw, 33vw" decoding="async" alt="The sand and sea of Pampelonne Beach" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></sc-if>
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,oklch(0.16 0.03 235 / .55) 58%,oklch(0.16 0.03 235 / .9) 100%)"></div>
+        <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ single.beach.replace }}" style="position:absolute;z-index:2;top:12px;right:12px;border:0;background:oklch(0.98 0.005 80);color:oklch(0.24 0.02 60);height:34px;padding:0 12px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;cursor:pointer">Replace photo</button></sc-if>
+        <div style="position:absolute;left:30px;right:30px;bottom:30px">
+          <div style="font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:oklch(0.88 0.06 55)">5 minutes on foot</div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(30px,3.2vw,40px);line-height:1;margin:12px 0">Pampelonne Beach</h3>
+          <p style="font-size:14px;line-height:1.7;margin:0;max-width:520px">A private path leads from the community down to the sand. Morning swims, long lunches and sunset walks along the bay are all five minutes from the house.</p>
+        </div>
+      </article>
       <article onDragOver="{{ single.village.over }}" onDrop="{{ single.village.drop }}" style="position:relative;min-height:520px;overflow:hidden;color:oklch(0.98 0.005 80);background:oklch(0.22 0.03 235)">
         <img src="{{ single.village.src }}" srcset="{{ single.village.srcset }}" sizes="(max-width: 760px) 100vw, 33vw" decoding="async" alt="Hilltop village of Ramatuelle above green countryside" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,oklch(0.16 0.03 235 / .55) 58%,oklch(0.16 0.03 235 / .9) 100%)"></div>
@@ -664,7 +674,7 @@ section[data-screen-label]:not([data-screen-label="Hero"]):not([data-screen-labe
   </div>
 </sc-if>
 </x-dc>
-<script type="text/x-dc" data-dc-script="" data-props="{&quot;photoEditor&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;whatsapp&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;defaultMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Private stay&quot;,&quot;Advisor&quot;,&quot;Film / Photo&quot;],&quot;default&quot;:&quot;Private stay&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;stickyCta&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;photoEditor&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;whatsapp&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;defaultMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Private stay&quot;,&quot;Advisor&quot;,&quot;Film / Photo&quot;],&quot;default&quot;:&quot;Private stay&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;stickyCta&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
 class Component extends DCLogic {
   defaults() {
     const g = a => a.map(([src, cap]) => ({ src, cap }));
@@ -679,7 +689,7 @@ class Component extends DCLogic {
         dining: g([["assets/photos/garden-terrace-dinner.webp","garden dining"],["assets/photos/pool-lunch.webp","Lunch by the pool"],["assets/photos/sea-view-dining.webp","Dining on the sea-view terrace"],["assets/photos/pergola-table.webp","The outdoor dining room"]]),
         parties: g([["assets/photos/filming-golden-hour.webp","Filming at golden hour"],["assets/photos/terrace-after-dark.webp","The terrace after dark"],["assets/photos/bar-facing-sea.webp","various arrangments facing the sea"],["assets/photos/on-location.webp","On location"]])
       },
-      singles: {"hero":"assets/photos/user/hero-mw210auo.webp","poolbar":"assets/photos/pool-bar-white-marble.webp","bbq":"assets/photos/green-marble-bar.webp","celebrate":"assets/photos/celebration-terrace.webp","film":"assets/photos/production-terrace.webp","village":"assets/photos/ramatuelle-village.webp","club":"assets/photos/le-club-55.webp","tropez":"assets/photos/saint-tropez-port.webp"}
+      singles: {"beach":"assets/photos/pampelonne-beach.webp","hero":"assets/photos/user/hero-mw210auo.webp","poolbar":"assets/photos/pool-bar-white-marble.webp","bbq":"assets/photos/green-marble-bar.webp","celebrate":"assets/photos/celebration-terrace.webp","film":"assets/photos/production-terrace.webp","village":"assets/photos/ramatuelle-village.webp","club":"assets/photos/le-club-55.webp","tropez":"assets/photos/saint-tropez-port.webp"}
     };
   }
   state = { scrolled: false, past: false, atForm: false, w: 1280, menu: false, level: 0, img: 0, mode: null, sent: false, error: '', lb: null,
@@ -872,7 +882,7 @@ class Component extends DCLogic {
       drop: e => this.dropAt(e, gid, null),
       addH: layouts[gid](1)[1], addHK: hKey[layouts[gid](1)[1]]
     });
-    const caps = { hero: 'Villa Dune', tropez: 'Saint-Tropez', poolbar: 'The pool bar, first floor', bbq: 'The green marble bar, second floor', celebrate: 'Celebrations', film: 'Film & photography', village: 'Ramatuelle village', club: 'Le Club 55' };
+    const caps = { hero: 'Villa Dune', tropez: 'Saint-Tropez', poolbar: 'The pool bar, first floor', bbq: 'The green marble bar, second floor', celebrate: 'Celebrations', film: 'Film & photography', village: 'Ramatuelle village', club: 'Le Club 55', beach: 'Pampelonne Beach' };
     const single = {};
     Object.keys(D.singles).forEach(key => {
       single[key] = { src: D.singles[key], srcset: sized(D.singles[key]),
@@ -914,7 +924,7 @@ class Component extends DCLogic {
       navInk: S.scrolled || S.menu || ed ? ink : paper,
       navLine: S.scrolled || S.menu || ed ? 'oklch(0.86 0.015 75)' : 'oklch(0.98 0.005 80 / .18)',
       navLinks: [{ href: '#residence', label: 'Residence' }, { href: '#architecture', label: 'Architecture' }, { href: '#outdoors', label: 'Outdoors' }, { href: '#table', label: 'Table & Bar' }, { href: '#experience', label: 'Experience' }, { href: '#peninsula', label: 'Location' }, { href: '#arrangements', label: 'Arrangements' }],
-      metrics: [{ k: 'Interior', v: '600 m²' }, { k: 'Private grounds', v: '2,000–2,500 m²' }, { k: 'Bedrooms', v: 'sleeps 16 + staff' }, { k: 'Beach access', v: 'private domain road' }, { k: 'STAY & RATES', v: 'Rates on request' }],
+      metrics: [{ k: 'Interior', v: '600 m²' }, { k: 'Private grounds', v: '2,000–2,500 m²' }, { k: 'Bedrooms', v: 'sleeps 16 + staff' }, { k: 'Beach access', v: 'private domain road' }, { k: 'STAY & RATES', v: 'rates on request' }],
       editing: ed, viewing: !ed, tileCursor: ed ? 'grab' : 'zoom-in', tileMode: ed ? 'grab' : 'zoom', stop,
       fileRef: this.fileRef, onFile: e => this.onFile(e),
       dragEnd: () => this.setState({ drag: null, over: null }),
@@ -932,7 +942,7 @@ class Component extends DCLogic {
       levelImg: cur ? { src: cur.src, cap: cur.cap, fit: cur.src.includes('principal-terrace') ? 'contain' : 'cover', srcset: cur.src.includes('principal-terrace-') ? 'assets/principal-terrace-640.webp 640w, assets/principal-terrace-960.webp 960w, assets/photos/principal-terrace.webp 1448w' : sized(cur.src) } : { src: '', cap: '', fit: 'cover', srcset: '' },
       times: [{ k: 'Pampelonne Beach', v: '2 min walk' }, { k: 'Le Club 55', v: 'Within walking distance' }, { k: 'Ramatuelle Village', v: '10 min drive' }, { k: 'Saint-Tropez Port', v: '15 min drive' }],
       tiers: [
-        { num: '01', title: 'Private Residence', body: 'Exclusive use of the house from one week to the full season.', items: ['1 master + 5 en-suite guest rooms', 'Separate children’s floor', 'Staff accommodation', 'Daily housekeeping & concierge'], tariff: 'Rates on request', pick: () => this.setState({ mode: 0 }) },
+        { num: '01', title: 'Private Residence', body: 'Exclusive use of the house from one week to the full season.', items: ['1 master + 5 en-suite guest rooms', 'Separate children’s floor', 'Staff accommodation', 'Daily housekeeping & concierge'], tariff: 'rates on request', pick: () => this.setState({ mode: 0 }) },
         { num: '02', title: 'Film & Photography', body: 'Editorial, campaign and production enquiries are reviewed individually before access or dates are discussed.', items: ['Enquiry only', 'Usage and crew scope required', 'Access subject to written approval'], tariff: 'By private arrangement', pick: () => this.setState({ mode: 2 }) }
       ],
       charter: [
