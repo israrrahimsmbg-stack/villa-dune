@@ -137,6 +137,9 @@ def main():
     html = html.replace(r"/^assets\/view-[0-9a-f]+\.webp$/.test(it.src) ? it.src.replace('.webp', '-320.webp')",
                         "sized(it.src) ? it.src.replace('.webp', '-320.webp')")
 
+    # Enquiries go to the villa's own mailbox, whatever address the export carries.
+    html = re.sub(r"const email = '[^']*';", "const email = 'hello@blackedit.co';", html, count=1)
+
     # Visitors never see the "Edit photos" button; editing happens in Claude Design.
     html = re.sub(r'showEditToggle: [^,\n]*,', 'showEditToggle: false,', html, count=1)
 
