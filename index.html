@@ -311,7 +311,7 @@ section[data-screen-label]:not([data-screen-label="Hero"]):not([data-screen-labe
         <div style="display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:oklch(0.52 0.12 45)"><span style="width:28px;height:1px;background:currentColor;flex:none"></span>Spatial Architecture</div>
         <h2 data-i18n="archTitle" style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,3.6vw,52px);line-height:1.08;letter-spacing:-.01em;margin:18px 0 0;color:oklch(0.24 0.02 60);text-wrap:balance;max-width:none">Lush gardens and breathtaking sea views from every vantage point.</h2>
       </div>
-      <p style="font-size:16px;line-height:1.8;color:oklch(0.42 0.02 60);margin:0;max-width:540px;text-wrap:pretty">Arranged across three levels, the villa features ground-floor garden suites with direct garden access and a separate staff apartment. The first floor offers a master suite with a private sea-facing terrace and elegant living spaces with panoramic sea views, while the upper level houses a spacious, open-plan children’s suite.</p>
+      <p style="font-size:16px;line-height:1.8;color:oklch(0.42 0.02 60);margin:0;max-width:540px;text-wrap:pretty">Arranged across three levels, the villa features 5 ground-floor garden suites with direct garden access and a separate staff apartment. The first floor offers a master suite with a private sea-facing terrace and elegant living spaces with panoramic sea views, while the upper level houses a spacious, open-plan children’s suite.</p>
     </div>
     <nav class="floor-nav" aria-label="Floors">
       <sc-for list="{{ floors }}" as="fl" hint-placeholder-count="3">
@@ -938,7 +938,7 @@ class Component extends DCLogic {
       navInk: S.scrolled || S.menu || ed ? ink : paper,
       navLine: S.scrolled || S.menu || ed ? 'oklch(0.86 0.015 75)' : 'oklch(0.98 0.005 80 / .18)',
       navLinks: [{ href: '#residence', label: 'Residence' }, { href: '#architecture', label: 'Architecture' }, { href: '#outdoors', label: 'Outdoors' }, { href: '#table', label: 'Table & Bar' }, { href: '#experience', label: 'Experience' }, { href: '#peninsula', label: 'Location' }, { href: '#arrangements', label: 'Arrangements' }],
-      metrics: [{ k: 'Interior', v: '600 m²' }, { k: 'Private grounds', v: '2,000–2,500 m²' }, { k: 'Bedrooms', v: 'sleeps 16 + staff' }, { k: 'Suites', v: '5 garden suites' }, { k: 'Beach access', v: 'private domain road' }, { k: 'STAY & RATES', v: 'rates on request' }],
+      metrics: [{ k: 'Interior', v: '600 m²' }, { k: 'Private grounds', v: '2,000–2,500 m²' }, { k: 'Bedrooms', v: 'sleeps 16 + staff' }, { k: 'Beach access', v: 'private domain road' }, { k: 'STAY & RATES', v: 'rates on request' }],
       editing: ed, viewing: !ed, tileCursor: ed ? 'grab' : 'zoom-in', tileMode: ed ? 'grab' : 'zoom', stop,
       fileRef: this.fileRef, onFile: e => this.onFile(e),
       dragEnd: () => this.setState({ drag: null, over: null }),
