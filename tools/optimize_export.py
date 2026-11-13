@@ -69,8 +69,72 @@ html:has(.photo-viewer:not(.closing)){overflow:hidden}
 @media(prefers-reduced-motion:reduce){.photo-viewer,.photo-viewer.closing{animation:none}.photo-viewer>img{transition:none}}
 /* Landscape phones and short screens: the hero fits in the viewport instead of a 640px minimum. */
 @media(min-width:761px) and (max-height:620px){html body #top,html body #initial-hero{min-height:100svh!important}html body :is(#top,#initial-hero) .hero-shade{height:70%!important}}
+/* Floor tour: all three floors stacked, every photo visible, revealed as you scroll. */
+html body .floor-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid oklch(0.82 0.02 70);margin-bottom:clamp(36px,4vw,56px)}
+html body .floor-nav a{margin-top:-1px;border-top:2px solid transparent;padding:18px 12px 0 0;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;color:oklch(0.5 0.02 60);text-decoration:none;transition:color .2s,border-color .2s}
+html body .floor-nav a:hover,html body .floor-nav a:focus-visible{border-top-color:oklch(0.52 0.12 45);color:oklch(0.24 0.02 60);outline:none}
+html body .floor-nav span{font-size:10.5px;letter-spacing:.2em}
+html body .floor-nav strong{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(19px,2vw,26px)}
+html body .floor-stack{display:flex;flex-direction:column;gap:clamp(64px,8vw,112px)}
+html body .floor-block{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,72px);align-items:start;scroll-margin-top:120px}
+html body .floor-block:nth-child(even) .floor-text{order:2}
+html body .floor-text{position:sticky;top:130px;min-width:0}
+html body .floor-kicker{display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:oklch(0.52 0.12 45)}
+html body .floor-kicker b{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:44px;letter-spacing:0;line-height:1;color:oklch(0.52 0.12 45 / .55)}
+html body .floor-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(30px,3.4vw,50px);line-height:1.05;margin:14px 0 20px;overflow-wrap:break-word;color:oklch(0.24 0.02 60);text-wrap:balance}
+html body .floor-body{font-size:15px;line-height:1.8;color:oklch(0.42 0.02 60);margin:0 0 28px;text-wrap:pretty}
+html body .floor-facts{list-style:none;margin:0;padding:0;border-top:1px solid oklch(0.85 0.015 75)}
+html body .floor-facts li{display:grid;grid-template-columns:14px minmax(0,1fr);gap:0 12px;padding:14px 0;border-bottom:1px solid oklch(0.85 0.015 75)}
+html body .floor-facts li>span{width:5px;height:5px;background:oklch(0.52 0.12 45);margin-top:7px}
+html body .floor-facts li>div{display:flex;flex-direction:column;gap:3px}
+html body .floor-facts .fk{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;color:oklch(0.45 0.02 60)}
+html body .floor-facts .fv{font-size:14px;line-height:1.6;color:oklch(0.38 0.02 60)}
+html body .floor-photos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+html body .floor-photo{position:relative;display:block;margin:0;padding:0;border:0;overflow:hidden;aspect-ratio:4/3;background:oklch(0.93 0.015 75);cursor:zoom-in}
+html body .floor-photo:first-child,html body .floor-photo:nth-child(even):last-child{grid-column:1/-1;aspect-ratio:16/10}
+html body .floor-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+html body .floor-photo img[data-fit="contain"]{object-fit:contain}
+html body .floor-photo:hover img{transform:scale(1.03)}
+html body .floor-photo:focus-visible{outline:2px solid oklch(0.52 0.12 45);outline-offset:2px}
+html body .floor-cap{position:absolute;left:12px;bottom:12px;right:12px;width:max-content;max-width:calc(100% - 24px);text-align:left;color:#fff;font-size:10px;letter-spacing:.16em;line-height:1.4;text-transform:uppercase;background:oklch(0.2 0.03 235 / .45);padding:5px 8px}
+@media(max-width:900px){html body .floor-block{grid-template-columns:minmax(0,1fr)}html body .floor-block:nth-child(even) .floor-text{order:0}html body .floor-text{position:static}}
+@media(max-width:760px){html body .floor-nav{grid-template-columns:repeat(3,minmax(0,1fr))}html body .floor-nav a{padding-top:14px;gap:2px 8px}html body .floor-nav strong{font-size:17px;line-height:1.15}html body .floor-stack{gap:72px}html body .floor-block{gap:24px;scroll-margin-top:96px}html body .floor-kicker b{font-size:36px}html body .floor-photos{gap:6px}html body .floor-photo:not(:first-child) .floor-cap{display:none}}
+@supports (animation-timeline:view()){@media(prefers-reduced-motion:no-preference){html body .floor-photo,html body .floor-text{animation:floor-in linear both;animation-timeline:view();animation-range:entry 0% entry 55%}}}
+@keyframes floor-in{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:none}}
 #initial-view header{position:absolute;inset:0 0 auto;z-index:20;padding:20px 24px;color:#fffaf2;font:24px Georgia,serif}#initial-view{position:relative}
 </style>"""
+
+FLOOR_MARKUP = '''<nav class="floor-nav" aria-label="Floors">
+      <sc-for list="{{ floors }}" as="fl" hint-placeholder-count="3">
+        <a href="{{ fl.href }}"><span>{{ fl.num }}</span><strong>{{ fl.label }}</strong></a>
+      </sc-for>
+    </nav>
+    <div class="floor-stack">
+      <sc-for list="{{ floors }}" as="fl" hint-placeholder-count="3">
+        <article class="floor-block" id="{{ fl.id }}">
+          <div class="floor-text">
+            <div class="floor-kicker"><b>{{ fl.num }}</b>{{ fl.k }}</div>
+            <h3 class="floor-title">{{ fl.t }}</h3>
+            <p class="floor-body">{{ fl.b }}</p>
+            <ul class="floor-facts">
+              <sc-for list="{{ fl.f }}" as="f" hint-placeholder-count="3">
+                <li><span></span><div><span class="fk">{{ f.k }}</span><span class="fv">{{ f.v }}</span></div></li>
+              </sc-for>
+            </ul>
+          </div>
+          <div class="floor-photos">
+            <sc-for list="{{ fl.photos }}" as="ph" hint-placeholder-count="4">
+              <button type="button" class="floor-photo" onClick="{{ ph.open }}">
+                <img src="{{ ph.src }}" srcset="{{ ph.srcset }}" sizes="(max-width: 760px) 100vw, (max-width: 1400px) 50vw, 760px" alt="{{ ph.cap }}" loading="lazy" decoding="async" draggable="false" data-fit="{{ ph.fit }}">
+                <span class="floor-cap">{{ ph.cap }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </article>
+      </sc-for>
+    </div>'''
+
+FLOOR_JS = "floors: levels.map(l => ({ id: 'floor-' + l.gid, href: '#floor-' + l.gid, num: l.num, label: l.label, k: l.k, t: l.t, b: l.b, f: l.f.map(([k, v]) => ({ k: String(k || '').trim(), v: String(v || '').trim() })).filter(r => r.k || r.v), photos: (D.galleries[l.gid] || []).map((it, i) => ({ src: it.src, cap: it.cap, fit: it.src.includes('principal-terrace') ? 'contain' : 'cover', srcset: it.src.includes('principal-terrace-') ? 'assets/principal-terrace-640.webp 640w, assets/principal-terrace-960.webp 960w, assets/photos/principal-terrace.webp 1448w' : sized(it.src), open: () => { if (!ed) this.setState({ lb: { gid: l.gid, i } }); } })) })),"
 
 LATE_SCRIPTS = (
     '<script src="assets/languages.js"></script>\n'
@@ -157,6 +221,13 @@ def main():
     add('single.poolbar.src', 'single.poolbar.srcset', '(max-width: 760px) 100vw, 1240px')
     for key in ('bbq', 'celebrate', 'film', 'village', 'club'):
         add(f'single.{key}.src', f'single.{key}.srcset', '(max-width: 760px) 100vw, 50vw')
+
+    # Floor tour: replace the three tappable floor tabs with all floors stacked, so every
+    # photo is visible as visitors scroll (thumbnails were easy to miss on phones).
+    if 'class="floor-stack"' not in html:
+        html = sub_once(r'<div role="tablist".*?(?=\n\s*<div style="margin-top:clamp\(64px)', lambda _: FLOOR_MARKUP, html, 'floor tabs', re.S)
+    if 'floors: levels.map(' not in html:
+        html = sub_once(r'(?<=\n)(\s*)(levelTabs: levels\.map\()', lambda m: m.group(1) + FLOOR_JS + '\n' + m.group(1) + m.group(2), html, 'levelTabs')
 
     # React from the repository instead of unpkg.com, and the runtime deferred.
     if 'window.__resources' not in html:
